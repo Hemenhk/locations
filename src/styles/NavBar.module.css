@@ -1,0 +1,9 @@
+.NavBar {
+    background-color: #fafafa;
+    border: 1px solid rgb(238, 238, 238);
+}
+
+.Logo {
+    font-size: 2rem;
+    text-decoration: none;
+}
