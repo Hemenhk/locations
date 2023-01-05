@@ -10,8 +10,8 @@ function App() {
       <Container className={styles.Main}>
         <Routes>
           <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/signup" element={<h1>signup</h1>} />
-          <Route path="/signin" element={() => {}} />
+          <Route path="/signup" element={<h1>sign up</h1>} />
+          <Route path="/signin" element={<h1>sign in</h1>} />
         </Routes>
       </Container>
     </div>
