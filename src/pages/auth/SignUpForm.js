@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/SignUpForm.module.css";
 import appStyles from "../../App.module.css";
@@ -22,7 +22,15 @@ const SignUpForm = () => {
   // Destructuring the signUpData object allows for each key to be accessed individually.
   const {username, password1, password2} = signUpData;
 
-  const [errors, setErros] = useState({});
+  const [errors, setErrors] = useState({});
+
+  /**
+   * useNavigate hook used to take the user to a designated url upon successfully signin up.
+   * useNavigate has replaced useHistory() in the latest version of React, 
+   * but the functionality is the same.
+   */
+  const navigate = useNavigate();
+
   /**
    * This handleChange function is used to intercept the user's input
    * in the sign up form. The state is updated according to the value
@@ -36,12 +44,29 @@ const SignUpForm = () => {
     });
   };
 
+  /**
+   * handleSubmit function is an async funtion that waits for a promise upon the 
+   * user's sign up submission. If the submission is successful, the user's input
+   * will be stored in the database, and the user will be redirected to the sign in page.
+   * If the user is unsuccessful, then they'll trigger an error.
+   */
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post('/dj-rest-auth/registration', signUpData)
+      // user is redirected to the sign in page
+      navigate.push('/signin');
+    } catch(err) {
+      setErrors(err.response?.data)
+    };
+  };
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-1 p-md-2" l>
         <Container className={styles.Container}>
           <h1>Sign Up</h1>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Username</Form.Label>
               <Form.Control
@@ -51,6 +76,7 @@ const SignUpForm = () => {
                 // Destructured value used
                 value={username}
                 name="username"
+                onChange={handleChange}
               />
               <Form.Text className="text-muted">
                 This username will be displayed to other users.
@@ -66,6 +92,7 @@ const SignUpForm = () => {
                 // Destructured value used
                 value={password1}
                 name="password1"
+                onChange={handleChange}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -77,6 +104,7 @@ const SignUpForm = () => {
                 // Destructured value used
                 value={password2}
                 name="password2"
+                onChange={handleChange}
               />
             </Form.Group>
             <Button type="submit">Sign Up</Button>
