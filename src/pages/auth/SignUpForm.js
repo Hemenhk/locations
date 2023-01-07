@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styles from "../../styles/SignUpForm.module.css";
 import appStyles from "../../App.module.css";
 
@@ -21,7 +22,19 @@ const SignUpForm = () => {
   // Destructuring the signUpData object allows for each key to be accessed individually.
   const {username, password1, password2} = signUpData;
 
-
+  const [errors, setErros] = useState({});
+  /**
+   * This handleChange function is used to intercept the user's input
+   * in the sign up form. The state is updated according to the value
+   * of the event.target.value, which targets the value of the 'name'
+   * properties in the form i.e. 'username', 'password1' and 'password2'.
+   */
+  const handleChange = event => {
+    setSignUpData({
+      ...signUpData,
+      [event.target.name]: event.target.value
+    });
+  };
 
   return (
     <Row className={styles.Row}>
@@ -37,6 +50,7 @@ const SignUpForm = () => {
                 placeholder="Enter username:"
                 // Destructured value used
                 value={username}
+                name="username"
               />
               <Form.Text className="text-muted">
                 This username will be displayed to other users.
@@ -51,6 +65,7 @@ const SignUpForm = () => {
                 placeholder="Enter password:"
                 // Destructured value used
                 value={password1}
+                name="password1"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -61,6 +76,7 @@ const SignUpForm = () => {
                 placeholder="Confirm Password:"
                 // Destructured value used
                 value={password2}
+                name="password2"
               />
             </Form.Group>
             <Button type="submit">Sign Up</Button>
