@@ -1,8 +1,8 @@
 import React from "react";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../../styles/SignUpForm.module.css";
-import appStyles from "../../App.module.css"
+import appStyles from "../../App.module.css";
 
 const SignUpForm = () => {
   return (
@@ -39,16 +39,17 @@ const SignUpForm = () => {
                 placeholder="Confirm Password:"
               />
             </Form.Group>
-            <Button type="submit">
-              Sign Up
-            </Button>
+            <Button type="submit">Sign Up</Button>
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
-            <Link className={styles.Link} to="/signin">
-                Already have an account? <span>Sign In</span>
-            </Link>
+          <Link className={styles.Link} to="/signin">
+            Already have an account? <span>Sign In</span>
+          </Link>
         </Container>
+      </Col>
+      <Col md={6} className="my-auto d-none d-md-block p-2">
+        <Image className={appStyles.FillerImage} src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80" />
       </Col>
     </Row>
   );
