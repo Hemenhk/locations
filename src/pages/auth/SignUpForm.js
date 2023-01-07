@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styles from "../../styles/SignUpForm.module.css";
+import appStyles from "../../App.module.css"
 
 const SignUpForm = () => {
   return (
@@ -37,10 +39,15 @@ const SignUpForm = () => {
                 placeholder="Confirm Password:"
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
+            <Button type="submit">
+              Sign Up
             </Button>
           </Form>
+        </Container>
+        <Container className={`mt-3 ${appStyles.Content}`}>
+            <Link className={styles.Link} to="/signin">
+                Already have an account? <span>Sign In</span>
+            </Link>
         </Container>
       </Col>
     </Row>
