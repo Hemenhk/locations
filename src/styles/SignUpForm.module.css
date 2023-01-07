@@ -1,0 +1,24 @@
+h1 {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.Row {
+    height: calc(100vh - 81px);
+}
+
+.InputField {
+    background: #fff;
+    box-sizing: border-box;
+    border: 1px solid #fafafa;
+    border-radius: 5px;
+    color: #cdd0d7;
+    text-align: left;
+    padding: 12px;
+}
+
+.Container {
+    background: #fff;
+    border: 1px solid #cdd0d7;
+    padding: 2rem 1.5rem;
+}
