@@ -63,11 +63,11 @@ const SignUpForm = () => {
 
   return (
     <Row className={styles.Row}>
-      <Col className="my-auto py-1 p-md-2" l>
+      <Col className="my-auto py-1 p-md-2">
         <Container className={styles.Container}>
           <h1>Sign Up</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -83,7 +83,7 @@ const SignUpForm = () => {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="password1">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -95,7 +95,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="password2">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
