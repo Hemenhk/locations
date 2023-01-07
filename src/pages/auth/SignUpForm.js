@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../../styles/SignUpForm.module.css";
 import appStyles from "../../App.module.css";
 
+
 const SignUpForm = () => {
+
+  /**
+   * This useState hook is used to update the state of the 
+   * three input fields, that the user has to fill in to sign up.
+   * An object is used to store the value the user submits.
+   */
+  const [signUpData, setSignUpData] = useState({
+    username: "",
+    password1: "",
+    password2: "",
+  });
+
+  // Destructuring the signUpData object allows for each key to be accessed individually.
+  const {username, password1, password2} = signUpData;
+
+
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-1 p-md-2" l>
@@ -17,6 +35,8 @@ const SignUpForm = () => {
                 className={styles.InputField}
                 type="text"
                 placeholder="Enter username:"
+                // Destructured value used
+                value={username}
               />
               <Form.Text className="text-muted">
                 This username will be displayed to other users.
@@ -29,6 +49,8 @@ const SignUpForm = () => {
                 className={styles.InputField}
                 type="password"
                 placeholder="Enter password:"
+                // Destructured value used
+                value={password1}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -37,6 +59,8 @@ const SignUpForm = () => {
                 className={styles.InputField}
                 type="password"
                 placeholder="Confirm Password:"
+                // Destructured value used
+                value={password2}
               />
             </Form.Group>
             <Button type="submit">Sign Up</Button>
