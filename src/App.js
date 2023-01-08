@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import SignUpForm from "./pages/auth/SignUpForm";
+import './api/axiosDefaults'
 
 function App() {
   return (

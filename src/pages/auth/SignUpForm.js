@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/SignUpForm.module.css";
 import appStyles from "../../App.module.css";
+
 
 
 const SignUpForm = () => {
@@ -53,7 +54,7 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('/dj-rest-auth/registration/', signUpData)
+      await axios.post("/dj-rest-auth/registration/", signUpData)
       // user is redirected to the sign in page
       navigate.push('/signin');
     } catch(err) {
@@ -68,7 +69,7 @@ const SignUpForm = () => {
           <h1>Sign Up</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="username">
-              <Form.Label>Username</Form.Label>
+              <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 className={styles.InputField}
                 type="text"
@@ -84,7 +85,7 @@ const SignUpForm = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password1">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
                 type="password"
@@ -96,7 +97,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="password2">
-              <Form.Label>Confirm Password</Form.Label>
+              <Form.Label className="d-none">Confirm Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
                 type="password"
