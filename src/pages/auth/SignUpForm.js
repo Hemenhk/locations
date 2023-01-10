@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "../../styles/SignUpForm.module.css";
+import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
 
 const SignUpForm = () => {
