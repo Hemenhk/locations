@@ -8,7 +8,6 @@ const NavBar = () => {
   // This line of code allows us to access the user's logged in status
   const currentUser = useContext(CurrentUserContext);
 
-
   /**
    * This code uses a JSX fragment to allow React to specify what will be
    * rendered depending on the user's logged out status. If the user is logged out,
@@ -30,7 +29,7 @@ const NavBar = () => {
       </NavLink>
     </>
   );
-/**
+  /**
    * This code uses a JSX fragment to allow React to specify what will be
    * rendered depending on the user's logged in status. If the user is logged out,
    * this link will be rendered in the navbar. This creates good UX.
@@ -49,6 +48,11 @@ const NavBar = () => {
               <i className="fa-solid fa-house"></i>
               Home
             </NavLink>
+            {/* This ternary operator allows this React app to render different
+             nav links depending on the user's logged in status. 
+             If currentUser = true, loggedInStatus will be rendered, else the 
+             loggedOutStatus will be rendered instead. This allows for good UX */}
+            {currentUser ? loggedInStatus : loggedOutStatus}
           </Nav>
         </Navbar.Collapse>
       </Container>
