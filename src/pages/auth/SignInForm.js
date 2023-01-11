@@ -47,6 +47,7 @@ const SignInForm = () => {
   /**
    * handleSubmit function is an async funtion that waits for a promise upon the
    * user's sign in submission. If the submission is successful, the user will be redirected to the home page.
+   * The 'setCurrentUser' is called with 'data.user' passed into it, so that the user's logged in status is tracked.
    * If the user is unsuccessful, then they'll trigger an error.
    */
   const handleSubmit = async (event) => {
