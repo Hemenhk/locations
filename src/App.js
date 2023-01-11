@@ -13,8 +13,20 @@ export const SetCurrentUserContext = createContext();
 
 
 function App() {
+
+  /**
+   * This useState hook is used to track the current user's logged in status.
+   * As this requires neither an array or an object, the initial value passed in 
+   * is 'null'
+   */
   const [currentUser, setCurrentUser] = useState(null);
 
+
+  /**
+   * This handleMount function will use an async function to fetch the user's 
+   * account from the database. If successful, the user will be able to log in,
+   * if unsuccessful the catch section will log the error.
+   */
   const handleMount = async () => {
     try {
       const {data} = await axios.get("/dj-rest-auth/user/");
@@ -24,6 +36,12 @@ function App() {
     }
   }
 
+  /**
+   * By passing in 'handleMount' inside this useEffect hook, React is being told
+   * to call the 'handleMount' function when the component renders. Thus, the user
+   * is a able to log in and see the rendered result. As this is used for log in 
+   * purposes, there is no need for a cleanup.
+   */
   useEffect(() => {
     handleMount();
   }, []);
