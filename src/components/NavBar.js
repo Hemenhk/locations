@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
 
 const NavBar = () => {
   // This line of code allows us to access the user's logged in status
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
 
   /**
    * This code uses a JSX fragment to allow React to specify what will be

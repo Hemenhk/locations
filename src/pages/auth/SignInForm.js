@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
-import { SetCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
-  const setCurrentUser = useContext(SetCurrentUserContext);
+  const setCurrentUser = useSetCurrentUser();
 
   /**
    * This useState hook is used to update the state of the
