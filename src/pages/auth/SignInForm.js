@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
+import { SetCurrentUserContext } from "../../App";
 
 const SignInForm = () => {
+  const setCurrentUser = useContext(SetCurrentUserContext);
 
-    /**
+  /**
    * This useState hook is used to update the state of the
    * two input fields, that the user has to fill in to sign in.
    * An object is used to store the value the user submits.
@@ -35,12 +37,12 @@ const SignInForm = () => {
    * of the event.target.value, which targets the value of the 'name'
    * properties in the form i.e. 'username' and 'password1'.
    */
-  const handleChange = event => {
+  const handleChange = (event) => {
     setSignInData({
-        ...signInData,
-        [event.target.name]: event.target.value,
-    })
-  }
+      ...signInData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   /**
    * handleSubmit function is an async funtion that waits for a promise upon the
@@ -50,10 +52,11 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        const {data} = await axios.post('dj-rest-auth/login/', signInData);
-        navigate('/')
-    } catch(err) {
-        setErrors(err.response?.data)
+      const { data } = await axios.post("dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      navigate("/");
+    } catch (err) {
+      setErrors(err.response?.data);
     }
   };
 
@@ -61,7 +64,7 @@ const SignInForm = () => {
     <Row className={styles.Row}>
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${styles.Container} p-4`}>
-            <h1>Sign In</h1>
+          <h1>Sign In</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="username">
               <Form.Label className="d-none">Username:</Form.Label>
