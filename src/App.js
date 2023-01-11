@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar";
 import SignUpForm from "./pages/auth/SignUpForm";
 import './api/axiosDefaults'
 import SignInForm from "./pages/auth/SignInForm";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const CurrentUserContext = createContext();
@@ -24,6 +24,9 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    handleMount();
+  }, []);
 
   return (
     <div className={styles.App}>
