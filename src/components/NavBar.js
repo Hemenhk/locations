@@ -34,7 +34,16 @@ const NavBar = () => {
    * rendered depending on the user's logged in status. If the user is logged out,
    * this link will be rendered in the navbar. This creates good UX.
    */
-  const loggedInStatus = <>{currentUser?.username}</>;
+  const loggedInStatus = (
+    <>
+      <NavLink to="/posts" className={styles.NavLink}>
+        <i class="fa-regular fa-square-plus"></i>Add Post
+      </NavLink>
+      <NavLink to="/" className={styles.NavLink}>
+        <i class="fa-solid fa-right-from-bracket"></i>Sign Out
+      </NavLink>
+    </>
+  );
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
