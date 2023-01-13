@@ -1,13 +1,24 @@
+import axios from "axios";
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
 
 const NavBar = () => {
   // This line of code allows us to access the user's logged in status
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("/dj-rest-auth/logout/")
+      setCurrentUser(null);
+    } catch(err) {
+      console.log(err)
+    }
+  };
   /**
    * This code uses a JSX fragment to allow React to specify what will be
    * rendered depending on the user's logged out status. If the user is logged out,
@@ -39,7 +50,7 @@ const NavBar = () => {
       <NavLink to="/posts" className={styles.NavLink}>
         <i class="fa-regular fa-square-plus"></i>Add Post
       </NavLink>
-      <NavLink to="/" className={styles.NavLink}>
+      <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
         <i class="fa-solid fa-right-from-bracket"></i>Sign Out
       </NavLink>
     </>
