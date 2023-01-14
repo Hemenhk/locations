@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {axiosRes, axiosReq} from "../api/axiosDefaults";
 
 /**
  * The code on lines 8-9 creates two contexts that will be passed into
@@ -50,6 +51,30 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
+    /**
+     * This async function will request to refresh the access token by calling the API,
+     * if the request fails, and the user was logged in, they will be redirected to the
+     * signin page, and their logged in status will be set to "null"
+     */
+    axiosReq.interceptors.request.use(
+      async (config) => {
+        try {
+          await axios.post("/dj-rest-auth/token/refresh/");
+        } catch(err) {
+          setCurrentUser((prevCurrentUser) => {
+            if (prevCurrentUser){
+              navigate("/signin");
+            }
+            return null;
+          })
+          return config;
+        }
+        return config;
+      },
+      (err) => {
+        return Promise.reject(err);
+      });
+
     axios.interceptors.response.use(
       (response) => response,
       // An async function is used if the user's token expires
@@ -76,7 +101,7 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     )
-  })
+  }, [navigate]);
 
   return (
     /**
