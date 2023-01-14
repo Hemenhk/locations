@@ -2,13 +2,21 @@ import axios from "axios";
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import styles from "../styles/NavBar.module.css";
 
 const NavBar = () => {
+
   // This line of code allows us to access the user's logged in status
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  // Destructure the object values from useClickOutsideToggle
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   /**
    * The handleSignOut async function handles the user's log out.
@@ -18,10 +26,10 @@ const NavBar = () => {
    */
   const handleSignOut = async () => {
     try {
-      await axios.post("/dj-rest-auth/logout/")
+      await axios.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   };
   /**
@@ -61,12 +69,21 @@ const NavBar = () => {
     </>
   );
   return (
-    <Navbar className={styles.NavBar} expand="md" fixed="top">
+    <Navbar
+      expanded={expanded}
+      className={styles.NavBar}
+      expand="md"
+      fixed="top"
+    >
       <Container>
         <NavLink to="/" className={styles.Logo}>
           LOCATIONS
         </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto text-left">
             <NavLink className={styles.NavLink} to="/">
