@@ -10,7 +10,12 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-
+  /**
+   * The handleSignOut async function handles the user's log out.
+   * If the user is successful, axios will reach the API logout endpoint
+   * and the user's token will expire. If the attempt is unsuccessful,
+   * an error will be loggen in the console.
+   */
   const handleSignOut = async () => {
     try {
       await axios.post("/dj-rest-auth/logout/")

@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 /**
  * The code on lines 8-9 creates two contexts that will be passed into
@@ -14,6 +15,9 @@ export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
+
+  // Create navigate to use redirect functionality
+  const navigate = useNavigate();
   /**
    * This useState hook is used to track the current user's logged in status.
    * As this requires neither an array or an object, the initial value passed in
@@ -28,7 +32,7 @@ export const CurrentUserProvider = ({ children }) => {
    */
   const handleMount = async () => {
     try {
-      const { data } = await axios.get("/dj-rest-auth/user/");
+      const { data } = await axiosRes.get("/dj-rest-auth/user/");
       setCurrentUser(data);
     } catch (err) {
       console.log(err);
@@ -44,6 +48,35 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount();
   }, []);
+
+  useMemo(() => {
+    axios.interceptors.response.use(
+      (response) => response,
+      // An async function is used if the user's token expires
+      async (err) => {
+        /**
+         * If the user's status is unauthorized (401 error), axios will attempt
+         * to refresh it by accessing the API. If the refresh attempt fails, then
+         * the user is redirected to the signin page to sign in again, and their 
+         * login status is "null"
+         */
+        if (err.response?.status === 401){
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/")
+          } catch(err) {
+            setCurrentUser(prevCurrentUser => {
+              if (prevCurrentUser){
+                navigate("/signin")
+              }
+              return null
+            })
+          }
+          return axios(err.config);
+        }
+        return Promise.reject(err);
+      }
+    )
+  })
 
   return (
     /**
