@@ -11,30 +11,83 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
+
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
 
+  /**
+   * This useState hook will create an object with keys that will be passed
+   * into the form field.
+   */
+  const [postData, setPostData] = useState({
+    title: "",
+    price: "",
+    contact: "",
+    content: "",
+    image: "",
+  });
+
+  // Destructure the postData hook, so the values can be accessed individually
+  const { title, price, contact, content, image } = postData;
+
+  /**
+   * This handleChange function is used to intercept the user's input
+   * in the post create form. The state is updated according to the value
+   * of the event.target.value, which targets the value of the 'name'
+   * properties in the form i.e. 'title' and 'conent', etc.
+   */
+  const handleChange = (event) => {
+    setPostData({
+      ...postData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const textFields = (
     <div className="text-center">
-
-        {/* This form allows the user to post their rental location, by typing
+      {/* This form allows the user to post their rental location, by typing
         in the title, cost, contact info and some content describing the location */}
 
       <Form.Group className="mb-3">
         <Form.Label>Title:</Form.Label>
-        <Form.Control type="text" name="title" placeholder="Type Title:" />
+        <Form.Control
+          type="text"
+          name="title"
+          value={title}
+          onChange={handleChange}
+          placeholder="Type Title:"
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="price">
-      <Form.Label>Price:</Form.Label>
-        <Form.Control type="text" name="price" placeholder="Type Price:" />
+        <Form.Label>Price:</Form.Label>
+        <Form.Control
+          type="text"
+          name="price"
+          value={price}
+          onChange={handleChange}
+          placeholder="Type Price:"
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="contact">
-      <Form.Label>Contact:</Form.Label>
-        <Form.Control type="text" name="contact" placeholder="Type Contact:" />
+        <Form.Label>Contact:</Form.Label>
+        <Form.Control
+          type="text"
+          name="contact"
+          value={contact}
+          onChange={handleChange}
+          placeholder="Type Contact:"
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="content">
-      <Form.Label>Content:</Form.Label>
-        <Form.Control as="textarea" rows={6} name="content" placeholder="Type Content:" />
+        <Form.Label>Content:</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={6}
+          name="content"
+          value={content}
+          onChange={handleChange}
+          placeholder="Type Content:"
+        />
       </Form.Group>
 
       <Button onClick={() => {}}>cancel</Button>
