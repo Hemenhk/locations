@@ -60,7 +60,7 @@ const NavBar = () => {
    */
   const loggedInStatus = (
     <>
-      <NavLink to="/posts" className={styles.NavLink}>
+      <NavLink to="/posts/create" className={styles.NavLink}>
         <i class="fa-regular fa-square-plus"></i>Add Post
       </NavLink>
       <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
