@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Container,
-  Figure,
-  Image,
-} from "react-bootstrap";
+import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
 
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { axiosReq } from "../../api/axiosDefaults";
 
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
@@ -33,6 +28,11 @@ const CreatePostForm = () => {
 
   // Destructure the postData hook, so the values can be accessed individually
   const { title, price, contact, content, image } = postData;
+
+  const imageInput = useRef(null);
+
+  // useNavigate hook will be used to redirect the user after successfully creating a post
+  const navigate = useNavigate();
 
   /**
    * This handleChange function is used to intercept the user's input
@@ -61,6 +61,34 @@ const CreatePostForm = () => {
         ...postData,
         image: URL.createObjectURL(event.target.files[0]),
       });
+    }
+  };
+
+  /**
+   * The handleSubmit async function creates a new FormData class, that creates a post that
+   * appends the title, price, contact, content and image. In the try/catch block, the user
+   * sends a post request to the API, with the new formData. If the request is successful, the 
+   * user will be redirected to the new post they created using the data.id of the post. If the 
+   * request fails, an error will be logged, only if the error is not a 401 unauthorized request.
+   */
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("contact", contact);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      navigate(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data)
+      }
     }
   };
 
@@ -110,14 +138,14 @@ const CreatePostForm = () => {
           placeholder="Type Content:"
         />
       </Form.Group>
-
-      <Button onClick={() => {}}>cancel</Button>
+        {/* The navigate(-1) is the same as useHistory's go.Back function */}
+      <Button onClick={() => navigate(-1)}>cancel</Button>
       <Button type="submit">create</Button>
     </div>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -150,9 +178,8 @@ const CreatePostForm = () => {
               <Form.Control
                 type="file"
                 id="image-upload"
-                name="image"
-                value={image}
                 accept="image/*"
+                ref={imageInput}
                 onChange={handleImageChange}
               />
             </Form.Group>
