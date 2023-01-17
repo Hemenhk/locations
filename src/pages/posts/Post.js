@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
@@ -19,15 +20,68 @@ const Post = (props) => {
     profile_id,
     profile_image,
     title,
-    ratings_id,
+    rating_id,
     ratings_count,
     reviews_count,
     postPage,
+    setPosts,
   } = props;
 
   // currentUser is used to define the owner of each post, through the "is_owner" variable
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  /**
+   * The handleRating async function has a try/catch block that awaits the axiosResponse to
+   * post ratings on a particular post. If the promise is successful, then the state of Posts changes
+   * to add + 1 rating on a post.
+   */
+  const handleRating = async () => {
+    try {
+      const { data } = await axiosRes.post("/ratings/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          /**
+           * If the post.id matches the id, the ratings count will increment by 1. If the id does not match,
+           * nothing happens, as the return statement only returns the post.
+           */
+          return post.id === id
+            ? {
+                ...post,
+                ratings_count: post.ratings_count + 1,
+                rating_id: data.id,
+              }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  /**
+   * The handleDerating async function has a try/catch block that awaits the axiosResponse to
+   * post ratings on a particular post. If the promise is successful, then the state of Posts changes
+   * to subtracts 1 rating on a post.
+   */
+
+  const handleUnrating = async () => {
+    try {
+      await axiosRes.delete(`/ratings/${rating_id}`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, ratings_count: post.ratings_count - 1, rating_id: null }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Card className={styles.Post}>
       <Card.Body className="align-items-center justify-content-between">
@@ -53,12 +107,14 @@ const Post = (props) => {
             >
               <i className="fa-solid fa-star" />
             </OverlayTrigger>
-          ) : ratings_id ? (
-            <span onClick={() => {}}>
+          ) : // If there is a matching rating id, then the user will be able to decrement it
+          rating_id ? (
+            <span onClick={handleUnrating}>
               <i className={`fa-solid fa-star ${styles.Star}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            // If the current user exists, they will be able to rate a post
+            <span onClick={handleRating}>
               <i className={`fa-solid fa-star ${styles.StarOutline}`} />
             </span>
           ) : (
