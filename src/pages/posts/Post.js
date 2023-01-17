@@ -1,4 +1,6 @@
 import React from 'react'
+import { Card } from 'react-bootstrap';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from "../../styles/Post.module.css"
 
 
@@ -21,8 +23,21 @@ const Post = () => {
         ratings_count,
         reviews_count
     } = props;
+
+    // currentUser is used to define the owner of each post, through the "is_owner" variable
+    const currentUser = useCurrentUser();
+    const is_owner = currentUser?.username === owner
   return (
-    <div>Post</div>
+    <Card className={styles.Post}>
+        <Card.Body>
+            <Media className="align-items-center justify-content-between">
+                <Link to={`/profiles/${profile_id}`}>
+                    <Avatar />
+                </Link>
+            </Media>
+        </Card.Body>
+    </Card>
+
   )
 }
 
