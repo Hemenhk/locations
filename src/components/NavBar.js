@@ -8,9 +8,9 @@ import {
 } from "../contexts/CurrentUserContext";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import styles from "../styles/NavBar.module.css";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
-
   // This line of code allows us to access the user's logged in status
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -65,6 +65,12 @@ const NavBar = () => {
       </NavLink>
       <NavLink to="/" className={styles.NavLink} onClick={handleSignOut}>
         <i className="fa-solid fa-right-from-bracket"></i>Sign Out
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
     </>
   );
