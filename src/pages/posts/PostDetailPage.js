@@ -40,7 +40,7 @@ const PostDetailPage = () => {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {/* Import Post component, and spread the post results from setPost */}
-        <Post {...post.results[0]} setPosts={setPost}/>
+        <Post {...post.results[0]} setPosts={setPost} postPage/>
         <Container className={appStyles.Content}>Comments</Container>
       </Col>
     </Row>
