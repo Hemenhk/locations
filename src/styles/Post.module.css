@@ -1,0 +1,16 @@
+.Post {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.Post figure, h5 {
+    margin: 0 0;
+}
+
+.Star {
+    color: blue;
+}
+
+.StarOutline:hover {
+    color: blue;
+}
