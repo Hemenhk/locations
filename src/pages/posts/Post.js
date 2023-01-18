@@ -34,8 +34,17 @@ const Post = (props) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate(`/posts/${id}/edit`)
-  }
+    navigate(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}`);
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   /**
    * The handleRating async function hasa try/catch block that awaits the axiosResponse to
@@ -79,7 +88,11 @@ const Post = (props) => {
         ...prevPosts,
         results: prevPosts.results.map((post) => {
           return post.id === id
-            ? { ...post, ratings_count: post.ratings_count - 1, rating_id: null }
+            ? {
+                ...post,
+                ratings_count: post.ratings_count - 1,
+                rating_id: null,
+              }
             : post;
         }),
       }));
@@ -96,7 +109,9 @@ const Post = (props) => {
         </Link>
         <div className="d-flex align-items-center">
           <span>{updated_at}</span>
-          {is_owner && postPage && <MoreDropdown handleEdit={handleEdit} />}
+          {is_owner && postPage && (
+            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
         </div>
       </Card.Body>
       <Link to={`/posts/${id}`}>

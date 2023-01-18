@@ -15,7 +15,8 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const MoreDropdown = ({ handleEdit }) => {
+// Destructure handleEdit and handleDelete to access them in the JSX
+export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ms-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
@@ -28,7 +29,7 @@ export const MoreDropdown = ({ handleEdit }) => {
         >
           <i className="fas fa-edit" />
         </Dropdown.Item>
-        <Dropdown.Item className={styles.DropdownItem} aria-label="delete">
+        <Dropdown.Item className={styles.DropdownItem} onClick={handleDelete} aria-label="delete">
           <i className="fas fa-trash-alt" />
         </Dropdown.Item>
       </Dropdown.Menu>
