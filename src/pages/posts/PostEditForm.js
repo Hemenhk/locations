@@ -1,15 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
-
-import Upload from "../../assets/upload.png";
+import { useNavigate, useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
-import Asset from "../../components/Asset";
-import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import { axiosReq } from "../../api/axiosDefaults";
 
 const PostEditForm = () => {
   const [errors, setErrors] = useState({});
@@ -36,11 +31,10 @@ const PostEditForm = () => {
 
   const { id } = useParams();
 
-
   /**
    * This useEffect hook contains a handleMount async function that contains a try/catch block.
    * Inside the try block, data is destructured to equal the 'get' request to the API. The values
-   * in the form are being destructured to equal 'data'. Then a ternary conditional operator is run 
+   * in the form are being destructured to equal 'data'. Then a ternary conditional operator is run
    * that if the user is the owner of the post, the data destructured above it will populate the fields
    * on mount. If the user is not the owner, they will be redirecte to the home page.
    */
@@ -50,7 +44,9 @@ const PostEditForm = () => {
         const { data } = await axiosReq.get(`/posts/${id}`);
         const { title, price, contact, content, image, is_owner } = data;
 
-        is_owner ? setPostData({title, price, contact, content, image}) : navigate("/")
+        is_owner
+          ? setPostData({ title, price, contact, content, image })
+          : navigate("/");
       } catch (err) {
         console.log(err);
       }
@@ -104,11 +100,14 @@ const PostEditForm = () => {
     formData.append("price", price);
     formData.append("contact", contact);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+    // If there exists an image, then replace it with a newly selected one.
+    if (imageInput?.current.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
-      navigate(`/posts/${data.id}`);
+      await axiosReq.put(`/posts/${id}`, formData);
+      navigate(`/posts/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -165,7 +164,7 @@ const PostEditForm = () => {
       </Form.Group>
       {/* The navigate(-1) is the same as useHistory's go.Back function */}
       <Button onClick={() => navigate(-1)}>cancel</Button>
-      <Button type="submit">create</Button>
+      <Button type="submit">Save</Button>
     </div>
   );
 
@@ -177,8 +176,7 @@ const PostEditForm = () => {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              {image ? (
-                <>
+              
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
@@ -187,19 +185,6 @@ const PostEditForm = () => {
                       Change the image
                     </Form.Label>
                   </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
-                </Form.Label>
-              )}
-
               <Form.Control
                 type="file"
                 id="image-upload"
