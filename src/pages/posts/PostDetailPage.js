@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import Post from "./Post";
+import Review from "../reviews/Review";
 import CreateReviewForm from "../reviews/CreateReviewForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -31,11 +32,12 @@ const PostDetailPage = () => {
     const handleMount = async () => {
       try {
         // By using destructuring, "data" is being renamed to "post".
-        const [{ data: post }] = await Promise.all([
+        const [{ data: post }, { data: reviews }] = await Promise.all([
           axiosReq.get(`/posts/${id}`),
+          axiosReq.get(`/reviews/?post=${id}`),
         ]);
         setPost({ results: [post] });
-        console.log(post);
+        setReviews(reviews);
       } catch (err) {
         console.log(err);
       }
@@ -62,6 +64,16 @@ const PostDetailPage = () => {
           ) : reviews.results.length ? (
             "Reviews"
           ) : null}
+          {reviews.results.length ? (
+            reviews.results.map((review) => (
+              <Review key={review.id} {...review}/>
+            ))
+            
+          ) : currentUser ? (
+            <span>Be the first to leave a review!</span>
+          ) : (
+            <span>No reviews yet...</span>
+          )}
         </Container>
       </Col>
     </Row>
