@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import styles from "../../styles/Home.module.css";
+import appStyles from "../../App.module.css"
 import { axiosReq } from "../../api/axiosDefaults";
+import Post from "./Post";
+import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png"
 
 const Home = ({ message, filter = "" }) => {
   /**
@@ -12,7 +16,7 @@ const Home = ({ message, filter = "" }) => {
   const [posts, setPosts] = useState({ results: [] });
 
   // This useState will create a loading asset if the posts are loading
-  const [hasLoaded, sethasLoaded] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   /**
    * The useLocation hook will be used to track the URL, thus allowing
@@ -33,11 +37,13 @@ const Home = ({ message, filter = "" }) => {
       try {
         const { data } = await axiosReq.get(`/posts/${filter}`);
         setPosts(data);
-        hasLoaded(true);
+        setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
+    // hasLoaded will be false before the fetchPosts function has run
+    setHasLoaded(false);
     // Call fetchPosts function
     fetchPosts();
   }, [filter, pathname]);
@@ -45,7 +51,23 @@ const Home = ({ message, filter = "" }) => {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>List of posts goes here</p>
+        {hasLoaded ? (
+            <>
+            {posts.results.length ? (
+                posts.results.map(post => (
+                    <Post key={post.id} {...post} setPosts={setPosts}/>
+                ))
+            ) : (
+                <Container className={appStyles.Content}>
+                    <Asset src={NoResults} message={message} />
+                </Container>
+            )}
+            </>
+        ) : (
+            <Container className={appStyles.Content}>
+                <Asset spinner />
+            </Container>
+        )}
       </Col>
     </Row>
   );
