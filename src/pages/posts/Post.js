@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
+import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
 
@@ -30,9 +31,14 @@ const Post = (props) => {
   // currentUser is used to define the owner of each post, through the "is_owner" variable
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/posts/${id}/edit`)
+  }
 
   /**
-   * The handleRating async function has a try/catch block that awaits the axiosResponse to
+   * The handleRating async function hasa try/catch block that awaits the axiosResponse to
    * post ratings on a particular post. If the promise is successful, then the state of Posts changes
    * to add + 1 rating on a post.
    */
@@ -90,7 +96,7 @@ const Post = (props) => {
         </Link>
         <div className="d-flex align-items-center">
           <span>{updated_at}</span>
-          {is_owner && postPage && "..."}
+          {is_owner && postPage && <MoreDropdown handleEdit={handleEdit} />}
         </div>
       </Card.Body>
       <Link to={`/posts/${id}`}>
