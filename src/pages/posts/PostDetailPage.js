@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import Post from "./Post";
+import CreateReviewForm from "../reviews/CreateReviewForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const PostDetailPage = () => {
   /**
@@ -18,6 +20,13 @@ const PostDetailPage = () => {
    * create.
    */
   const [post, setPost] = useState({ results: [] });
+
+  const currentUser = useCurrentUser();
+
+  const profile_image = currentUser?.profile_image;
+
+  const [reviews, setReviews] = useState({ results: [] });
+
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -40,8 +49,20 @@ const PostDetailPage = () => {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {/* Import Post component, and spread the post results from setPost */}
-        <Post {...post.results[0]} setPosts={setPost} postPage/>
-        <Container className={appStyles.Content}>Comments</Container>
+        <Post {...post.results[0]} setPosts={setPost} postPage />
+        <Container className={appStyles.Content}>
+          {currentUser ? (
+            <CreateReviewForm
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              post={id}
+              setPost={setPost}
+              setReviews={setReviews}
+            />
+          ) : reviews.results.length ? (
+            "Reviews"
+          ) : null}
+        </Container>
       </Col>
     </Row>
   );
