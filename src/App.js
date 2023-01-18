@@ -8,10 +8,15 @@ import SignInForm from "./pages/auth/SignInForm";
 import CreatePostForm from "./pages/posts/CreatePostForm";
 import PostDetailPage from "./pages/posts/PostDetailPage";
 import Home from "./pages/posts/Home";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
 
 function App() {
+  // currentUser will be used to access the logged in user's activities
+  const currentUser = useCurrentUser();
+  // If the current user's details are still being fetched, it will default to an empty string
+  const profile_id = currentUser?.profile_id || "";
   
 
   return (
@@ -19,7 +24,7 @@ function App() {
           <NavBar />
           <Container className={styles.Main}>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home />}/>
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/signin" element={<SignInForm />} />
               <Route path="/posts/create" element={<CreatePostForm />} />
