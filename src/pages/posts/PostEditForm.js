@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
 
@@ -7,7 +7,7 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -33,6 +33,31 @@ const PostEditForm = () => {
 
   // useNavigate hook will be used to redirect the user after successfully creating a post
   const navigate = useNavigate();
+
+  const { id } = useParams();
+
+
+  /**
+   * This useEffect hook contains a handleMount async function that contains a try/catch block.
+   * Inside the try block, data is destructured to equal the 'get' request to the API. The values
+   * in the form are being destructured to equal 'data'. Then a ternary conditional operator is run 
+   * that if the user is the owner of the post, the data destructured above it will populate the fields
+   * on mount. If the user is not the owner, they will be redirecte to the home page.
+   */
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/posts/${id}`);
+        const { title, price, contact, content, image, is_owner } = data;
+
+        is_owner ? setPostData({title, price, contact, content, image}) : navigate("/")
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [id, navigate]);
 
   /**
    * This handleChange function is used to intercept the user's input
@@ -67,8 +92,8 @@ const PostEditForm = () => {
   /**
    * The handleSubmit async function creates a new FormData class, that creates a post that
    * appends the title, price, contact, content and image. In the try/catch block, the user
-   * sends a post request to the API, with the new formData. If the request is successful, the 
-   * user will be redirected to the new post they created using the data.id of the post. If the 
+   * sends a post request to the API, with the new formData. If the request is successful, the
+   * user will be redirected to the new post they created using the data.id of the post. If the
    * request fails, an error will be logged, only if the error is not a 401 unauthorized request.
    */
   const handleSubmit = async (event) => {
@@ -87,7 +112,7 @@ const PostEditForm = () => {
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data)
+        setErrors(err.response?.data);
       }
     }
   };
@@ -138,7 +163,7 @@ const PostEditForm = () => {
           placeholder="Type Content:"
         />
       </Form.Group>
-        {/* The navigate(-1) is the same as useHistory's go.Back function */}
+      {/* The navigate(-1) is the same as useHistory's go.Back function */}
       <Button onClick={() => navigate(-1)}>cancel</Button>
       <Button type="submit">create</Button>
     </div>
