@@ -33,10 +33,12 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
 
+  // handleEdit function will navigate the user's post to the PostEditForm page
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
   };
 
+  // handleDelete will delete the user's post, and navigate them back to the Home page
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}`);

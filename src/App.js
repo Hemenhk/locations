@@ -9,6 +9,7 @@ import CreatePostForm from "./pages/posts/CreatePostForm";
 import PostDetailPage from "./pages/posts/PostDetailPage";
 import Home from "./pages/posts/Home";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import PostEditForm from "./pages/posts/PostEditForm";
 
 
 
@@ -29,6 +30,7 @@ function App() {
               <Route path="/signin" element={<SignInForm />} />
               <Route path="/posts/create" element={<CreatePostForm />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
+              <Route path="/posts/:id/edit" element={<PostEditForm />} />
             </Routes>
           </Container>
         </div>
