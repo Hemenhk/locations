@@ -10,6 +10,7 @@ import PostDetailPage from "./pages/posts/PostDetailPage";
 import Home from "./pages/posts/Home";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 
 
@@ -31,6 +32,7 @@ function App() {
               <Route path="/posts/create" element={<CreatePostForm />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
               <Route path="/posts/:id/edit" element={<PostEditForm />} />
+              <Route path="/profiles/:id" element={<ProfilePage />} />
             </Routes>
           </Container>
         </div>
