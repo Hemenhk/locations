@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
@@ -7,6 +7,9 @@ import Post from "./Post";
 import Review from "../reviews/Review";
 import CreateReviewForm from "../reviews/CreateReviewForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import Asset from "../../components/Asset";
 
 const PostDetailPage = () => {
   /**
@@ -65,10 +68,20 @@ const PostDetailPage = () => {
             "Reviews"
           ) : null}
           {reviews.results.length ? (
-            reviews.results.map((review) => (
-              <Review key={review.id} {...review} setPost={setPost} setReviews={setReviews}/>
-            ))
-            
+            <InfiniteScroll
+              children={reviews.results.map((review) => (
+                <Review
+                  key={review.id}
+                  {...review}
+                  setPost={setPost}
+                  setReviews={setReviews}
+                />
+              ))}
+              dataLength={reviews.results.length}
+              loader={<Asset spinner/>}
+              hasMore={!!reviews.next}
+              next={() => fetchMoreData(reviews, setReviews)}
+            />
           ) : currentUser ? (
             <span>Be the first to leave a review!</span>
           ) : (

@@ -17,6 +17,7 @@ const ReviewEditForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // change axios from "put" to "get" to work
       await axiosRes.get(`/reviews/${id}`, {
         content: formContent.trim(),
       });
