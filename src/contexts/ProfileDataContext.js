@@ -1,5 +1,4 @@
-import { useContext, createContext } from "react";
-import { useCurrentUser } from "./CurrentUserContext";
+import { useContext, createContext, useState } from "react";
 
 export const ProfileDataContext = createContext();
 export const SetProfileDataContext = createContext();
@@ -9,6 +8,7 @@ export const useSetProfileData = () => useContext(SetProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
+    // we will use the pageProfile later!
     pageProfile: { results: [] },
   });
 
