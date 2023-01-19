@@ -66,7 +66,7 @@ const PostDetailPage = () => {
           ) : null}
           {reviews.results.length ? (
             reviews.results.map((review) => (
-              <Review key={review.id} {...review}/>
+              <Review key={review.id} {...review} setPost={setPost} setReviews={setReviews}/>
             ))
             
           ) : currentUser ? (
