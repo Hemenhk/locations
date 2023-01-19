@@ -12,9 +12,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
+  useRedirect('loggedIn');
   /**
+   * 
    * This useState hook is used to update the state of the
    * three input fields, that the user has to fill in to sign up.
    * An object is used to store the value the user submits.

@@ -14,7 +14,7 @@ const ProfileEditForm = () => {
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
   const navigate = useNavigate();
-  const imageFile = useRef();
+  const imageInput = useRef();
 
   const [profileData, setProfileData] = useState({
     name: "",
@@ -57,8 +57,8 @@ const ProfileEditForm = () => {
     formData.append("name", name);
     formData.append("content", content);
 
-    if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput?.current?.files[0]);
     }
 
     try {
@@ -130,13 +130,13 @@ const ProfileEditForm = () => {
               <Form.Control
                 type="file"
                 id="image-upload"
-                ref={imageFile}
+                ref={imageInput}
                 accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files.length) {
+                onChange={(event) => {
+                  if (event.target.files.length) {
                     setProfileData({
                       ...profileData,
-                      image: URL.createObjectURL(e.target.files[0]),
+                      image: URL.createObjectURL(event.target.files[0]),
                     });
                   }
                 }}

@@ -5,10 +5,12 @@ import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-
+  useRedirect('loggedIn')
   /**
    * This useState hook is used to update the state of the
    * two input fields, that the user has to fill in to sign in.
@@ -55,7 +57,8 @@ const SignInForm = () => {
     try {
       const { data } = await axios.post("dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      navigate("/");
+      setTokenTimestamp(data);
+      navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
     }

@@ -8,11 +8,12 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
+  useRedirect('loggedOut');
 
   /**
    * This useState hook will create an object with keys that will be passed
