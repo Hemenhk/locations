@@ -99,19 +99,22 @@ const CreatePostForm = () => {
         in the title, cost, contact info and some content describing the location */}
 
       <Form.Group className="mb-3">
-        <Form.Label>Title:</Form.Label>
+        <Form.Label htmlFor="title">Title:</Form.Label>
         <Form.Control
           type="text"
+          id="title"
           name="title"
           value={title}
+          data-testid="title-test"
           onChange={handleChange}
           placeholder="Type Title:"
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="price">
-        <Form.Label>Price:</Form.Label>
+        <Form.Label htmlFor="price">Price:</Form.Label>
         <Form.Control
           type="text"
+          id="price"
           name="price"
           value={price}
           onChange={handleChange}
@@ -119,9 +122,10 @@ const CreatePostForm = () => {
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="contact">
-        <Form.Label>Contact:</Form.Label>
+        <Form.Label htmlFor="contact">Contact:</Form.Label>
         <Form.Control
           type="text"
+          id="contact"
           name="contact"
           value={contact}
           onChange={handleChange}
@@ -129,10 +133,11 @@ const CreatePostForm = () => {
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="content">
-        <Form.Label>Content:</Form.Label>
+        <Form.Label htmlFor="content">Content</Form.Label>
         <Form.Control
           as="textarea"
           rows={6}
+          id="content"
           name="content"
           value={content}
           onChange={handleChange}
@@ -141,7 +146,7 @@ const CreatePostForm = () => {
       </Form.Group>
         {/* The navigate(-1) is the same as useHistory's go.Back function */}
       <Button onClick={() => navigate(-1)}>cancel</Button>
-      <Button type="submit">create</Button>
+      <Button data-testid="create-test" type="submit">create</Button>
     </div>
   );
 
@@ -178,6 +183,7 @@ const CreatePostForm = () => {
 
               <Form.Control
                 type="file"
+                data-testid="image-test"
                 id="image-upload"
                 accept="image/*"
                 ref={imageInput}

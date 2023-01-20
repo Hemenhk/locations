@@ -26,6 +26,7 @@ test("render password input field", () => {
         <BrowserRouter>
             <SignInForm />
         </BrowserRouter>
+        
       );
 
     const passwordInput = screen.getByPlaceholderText(/Enter Password:/i)
