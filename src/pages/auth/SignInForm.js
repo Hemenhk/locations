@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Form, Button, Row, Col, Container, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
@@ -25,6 +25,8 @@ const SignInForm = () => {
   const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
+
+  const [showAlert, setShowAlert] = useState(false);
 
   /**
    * useNavigate hook used to take the user to a designated url upon successfully signing in.
@@ -61,11 +63,12 @@ const SignInForm = () => {
       navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
+      }
     }
-  };
 
   return (
     <Row className={styles.Row}>
+      
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${styles.Container} p-4`}>
           <h1>Sign In</h1>
