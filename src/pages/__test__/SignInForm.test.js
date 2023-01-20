@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import SignInForm from "../auth/SignInForm";
-import { CurrentUserProvider } from "../../contexts/CurrentUserContext";
 
 test("renders SignInForm", () => {
     render(
