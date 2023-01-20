@@ -63,7 +63,7 @@ const Home = ({ message, filter = "" }) => {
   }, [filter, pathname, query]);
 
   return (
-    <Row className="h-100">
+    <Row className="h-100 justify-content-center">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form

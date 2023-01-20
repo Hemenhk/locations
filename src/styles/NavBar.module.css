@@ -1,16 +1,30 @@
 .NavBar {
-    background-color: #fafafa;
-    border: 1px solid rgb(238, 238, 238);
+    background-color: #101010;
+    border-bottom: 1px solid #ffa60094;
 }
 
 .NavLink {
     padding: 0.5rem;
-    color: #000;
+    color: #A0DB8E;
     text-decoration: none;
+}
+
+.NavLink:hover {
+    color:  #FFA500;
 }
 
 .Logo {
     font-size: 2rem;
-    color: #000;
+    color: #A0DB8E;
     text-decoration: none;
+}
+
+.Logo:hover {
+    color: #FFA500;
+}
+
+.Hamburger {
+    outline: none;
+    
+    
 }

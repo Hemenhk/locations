@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, ThemeProvider } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
@@ -77,36 +77,40 @@ const NavBar = () => {
     </>
   );
   return (
-    <Navbar
-      expanded={expanded}
-      className={styles.NavBar}
-      expand="md"
-      fixed="top"
-    >
-      <Container>
-        <NavLink to="/" className={styles.Logo}>
-          LOCATIONS
-        </NavLink>
-        <Navbar.Toggle
-          ref={ref}
-          onClick={() => setExpanded(!expanded)}
-          aria-controls="basic-navbar-nav"
-        />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto text-left">
-            <NavLink className={styles.NavLink} to="/">
-              <i className="fa-solid fa-house"></i>
-              Home
-            </NavLink>
-            {/* This ternary operator allows this React app to render different
+    <ThemeProvider breakpoints={["lg", "md", "sm"]}>
+      <Navbar
+        expanded={expanded}
+        className={styles.NavBar}
+        expand="md"
+        fixed="top"
+      >
+        <Container>
+          <NavLink to="/" className={styles.Logo}>
+            LOCATIONS
+          </NavLink>
+          <Navbar.Toggle
+            ref={ref}
+            onClick={() => setExpanded(!expanded)}
+            className={styles.Hamburger}
+            aria-controls="basic-navbar-nav"
+          />
+
+          <Navbar.Collapse  id="basic-navbar-nav">
+            <Nav className="ms-auto text-left">
+              <NavLink className={styles.NavLink} to="/">
+                <i className="fa-solid fa-house"></i>
+                Home
+              </NavLink>
+              {/* This ternary operator allows this React app to render different
              nav links depending on the user's logged in status. 
              If currentUser = true, loggedInStatus will be rendered, else the 
              loggedOutStatus will be rendered instead. This allows for good UX */}
-            {currentUser ? loggedInStatus : loggedOutStatus}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              {currentUser ? loggedInStatus : loggedOutStatus}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </ThemeProvider>
   );
 };
 
