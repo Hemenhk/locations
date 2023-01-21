@@ -6,6 +6,7 @@ import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
+import appStyles from "../../App.module.css";
 
 const Post = (props) => {
   /**
@@ -105,12 +106,17 @@ const Post = (props) => {
 
   return (
     <Card className={styles.Post}>
-      <Card.Body className="align-items-center justify-content-between">
-        <Link to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_image} height={55} /> {owner}
+      <Card.Body
+        className={`align-items-center justify-content-between ${appStyles.PostContent}`}
+      >
+        <Link className={styles.OwnerName} to={`/profiles/${profile_id}`}>
+          <Avatar src={profile_image} height={55} /> <span>{owner}</span>
         </Link>
-        <div className="d-flex align-items-center">
+        <div className={styles.PostUpdate}>
           <span>{updated_at}</span>
+        </div>
+        <div>
+          {title && <Card.Title className="text-center">{title}</Card.Title>}
           {is_owner && postPage && (
             <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           )}
@@ -119,16 +125,15 @@ const Post = (props) => {
       <Link to={`/posts/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
-      <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
+      <Card.Body className={appStyles.PostContent}>
+        {content && <Card.Text className="text-center">{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>You can't rate your own post!</Tooltip>}
             >
-              <i className="fa-solid fa-star" />
+              <i className={`fa-solid fa-star ${styles.Star}`} />
             </OverlayTrigger>
           ) : // If there is a matching rating id, then the user will be able to decrement it
           rating_id ? (
@@ -150,7 +155,7 @@ const Post = (props) => {
           )}
           {ratings_count}
           <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
+            <i className={`far fa-comments ${styles.Star}`} />
           </Link>
           {reviews_count}
         </div>

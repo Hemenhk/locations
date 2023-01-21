@@ -55,8 +55,8 @@ const ProfilePage = () => {
 
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
-      <Row nogutters="true" className="px-3 text-center">
+      {profile?.is_owner && <ProfileEditDropdown className={styles.DropDownLinks} id={profile?.id} />}
+      <Row nogutters="true" className="justify-content-center">
         <Col lg={3} className="text-lg-left">
           <Image
             className={styles.ProfileImage}
@@ -65,7 +65,7 @@ const ProfilePage = () => {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
+          <h3 className={`m-2 ${styles.ProfileOwner}`}>{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>

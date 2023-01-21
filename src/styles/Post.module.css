@@ -1,16 +1,30 @@
 .Post {
     text-align: left;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+    color: #fafafa;
 }
 
 .Post figure, h5 {
     margin: 0 0;
 }
 
+.PostUpdate {
+    margin-top: 3rem;
+}
+
+.OwnerName {
+    color: #fafafa;
+    text-decoration: none;
+}
+
+.OwnerName:hover {
+    color: #2a9fd6;
+}
+
 .Star {
-    color: blue;
+    color: #2a9fd6;
 }
 
 .StarOutline:hover {
-    color: blue;
+    color: #2a9fd6;
 }

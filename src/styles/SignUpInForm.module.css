@@ -7,7 +7,7 @@ h1 {
     padding-bottom: 1rem;
     letter-spacing: 0.15rem;
 
-    color: rgb(46, 55, 29);
+    color: #2a9fd6;
 }
 
 .Row {
@@ -19,13 +19,13 @@ h1 {
     box-sizing: border-box;
     border: 1px solid #fafafa;
     border-radius: 5px;
-    color: #cdd0d7;
+    color: #fafafa;
     text-align: left;
     padding: 12px;
 }
 
 .Container {
-    background: #fff;
+    background: #1e1e1e;
     border: 1px solid #cdd0d7;
     padding: 2rem 1.5rem;
 }
@@ -35,8 +35,23 @@ h1 {
     text-align: center;
     display: block;
     margin: auto;
+
+    color: #fafafa;
+}
+
+.Link:hover {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+
+    color: #2a9fd6;
 }
 
 .Link span {
-    color: orange
+    color: #2a9fd6
+}
+
+.Link span:hover {
+    color: #fafafa
 }

@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css"
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
@@ -131,7 +132,7 @@ const SignUpForm = () => {
                 </Alert>
               ))}
             </Form.Group>
-            <Button type="submit">Sign Up</Button>
+            <Button className={btnStyles.Btn} type="submit">Sign Up</Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="warning" key={idx} className="mt-3">
                 {message}
