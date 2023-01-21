@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpInForm.module.css";
+import btnStyles from "../../styles/Button.module.css"
 import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
@@ -73,7 +74,7 @@ const SignInForm = () => {
         <Container className={`${styles.Container} p-4`}>
           <h1>Sign In</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="username">
+            <Form.Group className={`mb-3 ${styles.Label}`} controlId="username">
               <Form.Label className="d-none">Username:</Form.Label>
               <Form.Control
                 type="text"
@@ -85,7 +86,7 @@ const SignInForm = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="password">
+            <Form.Group className={`mb-3 ${styles.Label}`} controlId="password">
               <Form.Label className="d-none">Password:</Form.Label>
               <Form.Control
                 type="password"
@@ -96,7 +97,7 @@ const SignInForm = () => {
                 placeholder="Enter Password:"
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className={btnStyles.Button} variant="primary" type="submit">
               Sign In
             </Button>
           </Form>

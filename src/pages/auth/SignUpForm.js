@@ -77,7 +77,7 @@ const SignUpForm = () => {
         <Container className={styles.Container}>
           <h1>Sign Up</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="username">
+            <Form.Group className={`mb-3 ${styles.Label}`} controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -98,7 +98,7 @@ const SignUpForm = () => {
               </Form.Text>
             </Form.Group>
             
-            <Form.Group className="mb-3" controlId="password1">
+            <Form.Group className={`mb-3 ${styles.Label}`} controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -115,7 +115,7 @@ const SignUpForm = () => {
                 </Alert>
               ))}
             </Form.Group>
-            <Form.Group className="mb-3" controlId="password2">
+            <Form.Group className={`mb-3 ${styles.Label}`} controlId="password2">
               <Form.Label className="d-none">Confirm Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -132,7 +132,7 @@ const SignUpForm = () => {
                 </Alert>
               ))}
             </Form.Group>
-            <Button className={btnStyles.Btn} type="submit">Sign Up</Button>
+            <Button className={btnStyles.Button} type="submit">Sign Up</Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="warning" key={idx} className="mt-3">
                 {message}

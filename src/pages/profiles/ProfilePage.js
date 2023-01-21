@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Col, Row, Container, Image } from "react-bootstrap";
+import { Col, Row, Container, Image, Card } from "react-bootstrap";
 import Asset from "../../components/Asset";
 
 import styles from "../../styles/ProfilePage.module.css";
@@ -55,8 +55,8 @@ const ProfilePage = () => {
 
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown className={styles.DropDownLinks} id={profile?.id} />}
-      <Row nogutters="true" className="justify-content-center">
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      <Row nogutters="true" className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
             className={styles.ProfileImage}

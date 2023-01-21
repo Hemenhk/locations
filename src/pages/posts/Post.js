@@ -119,7 +119,7 @@ const Post = (props) => {
           )}
         </div>
         <div>
-          {title && <Card.Title className="text-center">{title}</Card.Title>}
+          <span className={styles.Title}>{title && <Card.Title className="text-center">{title}</Card.Title>}</span>
         </div>
         
       </Card.Body>

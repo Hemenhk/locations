@@ -43,7 +43,7 @@ export function ProfileEditDropdown({ id }) {
   return (
     <Dropdown className={`ms-auto ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
-      <Dropdown.Menu>
+      <Dropdown.Menu className={styles.Links}>
         <Dropdown.Item
           onClick={() => navigate(`/profiles/${id}/edit`)}
           aria-label="edit-profile"
