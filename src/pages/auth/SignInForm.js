@@ -68,7 +68,7 @@ const SignInForm = () => {
     }
 
   return (
-    <Row className={styles.Row}>
+    <Row className={`justify-content-center ${styles.Row}`}>
       
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${styles.Container} p-4`}>

@@ -72,8 +72,8 @@ const SignUpForm = () => {
   };
 
   return (
-    <Row className={styles.Row}>
-      <Col className="my-auto py-1 p-md-2">
+    <Row className={`justify-content-center ${styles.Row}`}>
+      <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={styles.Container}>
           <h1>Sign Up</h1>
           <Form onSubmit={handleSubmit}>
@@ -146,12 +146,7 @@ const SignUpForm = () => {
           </Link>
         </Container>
       </Col>
-      <Col md={6} className="my-auto d-none d-md-block p-2">
-        <Image
-          className={appStyles.FillerImage}
-          src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80"
-        />
-      </Col>
+      
     </Row>
   );
 };
