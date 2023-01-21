@@ -7,10 +7,19 @@
 
 .ProfileOwner {
     color: #fafafa;
+    font-family: 'Koulen', cursive;
+    letter-spacing: 2px;
 }
 
-.DropDownLinks i {
-    color: #2a9fd6 !important;
+.Stats {
+    color: #fafafa;
+    font-family: 'Koulen', cursive;
+
+}
+
+.ProfilePost {
+    color: #2a9fd6;
+    font-family: 'Koulen', cursive;
 }
 
 @media screen and (max-width: 991px) {

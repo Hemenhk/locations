@@ -11,7 +11,6 @@ import { setTokenTimestamp } from "../../utils/utils";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect('loggedIn')
   /**
    * This useState hook is used to update the state of the
    * two input fields, that the user has to fill in to sign in.
@@ -61,7 +60,7 @@ const SignInForm = () => {
       const { data } = await axios.post("dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      navigate(-1);
+      navigate("/");
     } catch (err) {
       setErrors(err.response?.data);
       }

@@ -5,9 +5,7 @@
 }
 
 .Absolute {
-    position: absolute;
-    right: 0;
-    z-index: 99;
+   text-align: right;
 }
 
 .Links i {

@@ -16,7 +16,6 @@ import btnStyles from "../../styles/Button.module.css"
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
-  useRedirect('loggedIn');
   /**
    * 
    * This useState hook is used to update the state of the

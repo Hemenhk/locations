@@ -79,6 +79,7 @@ const NavBar = () => {
   return (
     <ThemeProvider breakpoints={["lg", "md", "sm"]}>
       <Navbar
+        variant="dark"
         expanded={expanded}
         className={styles.NavBar}
         expand="md"
@@ -91,11 +92,11 @@ const NavBar = () => {
           <Navbar.Toggle
             ref={ref}
             onClick={() => setExpanded(!expanded)}
-            className={styles.Hamburger}
             aria-controls="basic-navbar-nav"
           />
 
-          <Navbar.Collapse  id="basic-navbar-nav">
+            
+          <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto text-left">
               <NavLink className={styles.NavLink} to="/">
                 <i className="fa-solid fa-house"></i>

@@ -10,11 +10,9 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
 
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
-  useRedirect("loggedOut");
 
   /**
    * This useState hook will create an object with keys that will be passed
@@ -168,7 +166,7 @@ const CreatePostForm = () => {
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
             <Form.Group className={`text-center ${styles.ImageField}`}>
               {image ? (

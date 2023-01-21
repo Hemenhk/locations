@@ -1,10 +1,14 @@
 .Owner {
     font-weight: bold;
-    color: blue;
+    color: #2a9fd6;
     margin-right: 8px;
 }
 
 .Date {
     font-weight: lighter;
     color: darkgoldenrod;
+}
+
+.DropDownLinks i {
+    color: #2a9fd6 !important;
 }

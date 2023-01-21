@@ -67,13 +67,13 @@ const ProfilePage = () => {
         <Col lg={6}>
           <h3 className={`m-2 ${styles.ProfileOwner}`}>{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
-            <Col xs={3} className="my-2">
+            <Col xs={3} className={`my-2 ${styles.Stats}`}>
               <div>{profile?.posts_count}</div>
               <div>posts</div>
             </Col>
           </Row>
         </Col>
-        {profile?.content && <Col className="p-3">{profile.content}</Col>}
+        {profile?.content && <Col className={`p-3 ${styles.ProfilePost}`}>{profile.content}</Col>}
       </Row>
     </>
   );
@@ -81,7 +81,7 @@ const ProfilePage = () => {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
+      <p className={`text-center ${styles.ProfilePost}`}>{profile?.owner}'s posts</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll

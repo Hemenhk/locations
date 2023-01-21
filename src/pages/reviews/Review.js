@@ -48,11 +48,11 @@ const Review = (props) => {
   return (
     <>
       <hr />
-      <Card>
-        <Link to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_image} />
-        </Link>
-        <Card.Body className="align-self-center ms-2">
+      <Card className={styles.DropDownLinks}>
+        <Card.Body className="align-self-left ms-2">
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} />
+          </Link>
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
           {showEditForm ? (

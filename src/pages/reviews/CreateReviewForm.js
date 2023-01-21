@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CreateReviewForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -43,7 +45,7 @@ function CreateReviewForm(props) {
 
   return (
     <Form className="mt-2" onSubmit={handleSubmit}>
-      <Form.Group>
+      <Form.Group >
         <InputGroup>
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profileImage} />
@@ -59,7 +61,7 @@ function CreateReviewForm(props) {
         </InputGroup>
       </Form.Group>
       <button
-        className={`${styles.Button} btn d-block ms-auto`}
+        className={`${btnStyles.Button} btn d-block mt-2 ms-auto`}
         disabled={!content.trim()}
         type="submit"
       >
