@@ -148,14 +148,14 @@ const CreatePostForm = () => {
 
       {/* The navigate(-1) is the same as useHistory's go.Back function */}
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={btnStyles.Button}
         data-testid="create-test"
         type="submit"
       >
         Create
       </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={btnStyles.Button}
         onClick={() => navigate(-1)}
       >
         Cancel

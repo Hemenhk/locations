@@ -5,6 +5,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
 
 const PostEditForm = () => {
   const [errors, setErrors] = useState({});
@@ -121,7 +123,7 @@ const PostEditForm = () => {
       {/* This form allows the user to post their rental location, by typing
         in the title, cost, contact info and some content describing the location */}
 
-      <Form.Group className="mb-3">
+      <Form.Group className={`mb-3 ${styles.Label}`}>
         <Form.Label>Title:</Form.Label>
         <Form.Control
           type="text"
@@ -131,7 +133,7 @@ const PostEditForm = () => {
           placeholder="Type Title:"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="price">
+      <Form.Group className={`mb-3 ${styles.Label}`} controlId="price">
         <Form.Label>Price:</Form.Label>
         <Form.Control
           type="text"
@@ -141,7 +143,7 @@ const PostEditForm = () => {
           placeholder="Type Price:"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="contact">
+      <Form.Group className={`mb-3 ${styles.Label}`} controlId="contact">
         <Form.Label>Contact:</Form.Label>
         <Form.Control
           type="text"
@@ -151,7 +153,7 @@ const PostEditForm = () => {
           placeholder="Type Contact:"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="content">
+      <Form.Group className={`mb-3 ${styles.Label}`} controlId="content">
         <Form.Label>Content:</Form.Label>
         <Form.Control
           as="textarea"
@@ -163,8 +165,8 @@ const PostEditForm = () => {
         />
       </Form.Group>
       {/* The navigate(-1) is the same as useHistory's go.Back function */}
-      <Button onClick={() => navigate(-1)}>cancel</Button>
-      <Button type="submit">Save</Button>
+      <Button className={btnStyles.Button} onClick={() => navigate(-1)}>cancel</Button>
+      <Button className={btnStyles.Button} type="submit">Save</Button>
     </div>
   );
 
@@ -175,13 +177,13 @@ const PostEditForm = () => {
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
-            <Form.Group className="text-center">
+            <Form.Group className={`text-center ${styles.ImageField}`}>
               
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
                   <div>
-                    <Form.Label htmlFor="image-upload">
+                    <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
                       Change the image
                     </Form.Label>
                   </div>
