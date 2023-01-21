@@ -7,11 +7,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
+
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import appStyles from "../../App.module.css";
+
 
 const UserPasswordForm = () => {
   const navigate = useNavigate();
@@ -56,7 +60,7 @@ const UserPasswordForm = () => {
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
-            <Form.Group>
+            <Form.Group className={appStyles.Label}>
               <Form.Label>New password</Form.Label>
               <Form.Control
                 placeholder="new password"
@@ -71,7 +75,7 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
-            <Form.Group>
+            <Form.Group className={appStyles.Label}>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
                 placeholder="confirm new password"
@@ -86,12 +90,12 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
-            <Button
+            <Button className={`mt-2 ${btnStyles.Button}`}
               onClick={() =>  navigate(-1)}
             >
               cancel
             </Button>
-            <Button
+            <Button className={`mt-2 ${btnStyles.Button}`}
               type="submit"
             >
               save

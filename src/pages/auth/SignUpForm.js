@@ -5,7 +5,6 @@ import {
   Row,
   Col,
   Container,
-  Image,
   Alert,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,7 +12,6 @@ import axios from "axios";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css"
-import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
   /**

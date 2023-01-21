@@ -8,6 +8,11 @@
   padding-top: 81px;
 }
 
+.Label {
+  font-family: 'Koulen', cursive;
+  color: #fafafa;
+}
+
 .Content {
   background-color: #202020;
   padding: 10px;

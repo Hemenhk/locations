@@ -7,6 +7,9 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
+import appStyles from "../../App.module.css"
+import btnStyles from "../../styles/Button.module.css";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import {
@@ -14,7 +17,6 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 
-import appStyles from "../../App.module.css";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -30,7 +32,7 @@ const UsernameForm = () => {
     if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
     } else {
-        navigate("/");
+      navigate("/");
     }
   }, [currentUser, navigate, id]);
 
@@ -56,7 +58,7 @@ const UsernameForm = () => {
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit} className="my-2">
-            <Form.Group>
+            <Form.Group className={appStyles.Label}>
               <Form.Label>Change username</Form.Label>
               <Form.Control
                 placeholder="username"
@@ -71,13 +73,12 @@ const UsernameForm = () => {
               </Alert>
             ))}
             <Button
-              onClick={() =>  navigate(-1)}
+              className={`mt-2 ${btnStyles.Button}`}
+              onClick={() => navigate(-1)}
             >
               cancel
             </Button>
-            <Button
-              type="submit"
-            >
+            <Button className={`mt-2 ${btnStyles.Button}`} type="submit">
               save
             </Button>
           </Form>
