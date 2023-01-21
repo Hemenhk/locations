@@ -15,9 +15,15 @@
   border: 1px solid #1e1e1e;
 }
 
-.PostContent {
+.PostAvatar {
   background-color: #1a1a1a;
   text-align: left;
+  padding-bottom: 12px;
+}
+
+.PostContent {
+  background-color: #1a1a1a;
+  text-align: center;
   padding-bottom: 12px;
 }
 

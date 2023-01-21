@@ -22,7 +22,7 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     <Dropdown className="ms-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
 
-      <Dropdown.Menu className="text-center">
+      <Dropdown.Menu className={`text-center ${styles.Links}`}>
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleEdit}
@@ -43,7 +43,7 @@ export function ProfileEditDropdown({ id }) {
   return (
     <Dropdown className={`ms-auto ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
-      <Dropdown.Menu className={styles.Links}>
+      <Dropdown.Menu>
         <Dropdown.Item
           onClick={() => navigate(`/profiles/${id}/edit`)}
           aria-label="edit-profile"

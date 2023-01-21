@@ -7,6 +7,7 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
+import dropStyles from "../../styles/MoreDropdown.module.css"
 
 const Post = (props) => {
   /**
@@ -107,26 +108,30 @@ const Post = (props) => {
   return (
     <Card className={styles.Post}>
       <Card.Body
-        className={`align-items-center justify-content-between ${appStyles.PostContent}`}
+        className={`align-items-center justify-content-between ${appStyles.PostAvatar}`}
       >
         <Link className={styles.OwnerName} to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} height={55} /> <span>{owner}</span>
         </Link>
-        <div className={styles.PostUpdate}>
-          <span>{updated_at}</span>
+        <div className="d-flex align-items-center">
+          {is_owner && postPage && (
+            <MoreDropdown className={dropStyles.Links} handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
         </div>
         <div>
           {title && <Card.Title className="text-center">{title}</Card.Title>}
-          {is_owner && postPage && (
-            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
-          )}
         </div>
+        
       </Card.Body>
       <Link to={`/posts/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body className={appStyles.PostContent}>
-        {content && <Card.Text className="text-center">{content}</Card.Text>}
+        <div className={styles.Updated}>
+          <span>{updated_at}</span>
+        </div>
+
+        {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
             <OverlayTrigger
