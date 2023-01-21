@@ -4,6 +4,8 @@
 }
 
 .NavLink {
+    font-family: 'Koulen', cursive;
+    letter-spacing: 2px;
     padding: 0.5rem;
     color: #2a9fd6;
     text-decoration: none;
@@ -15,6 +17,8 @@
 
 .Logo {
     font-size: 2rem;
+    font-family: 'Koulen', cursive;
+    letter-spacing: 2px;
     color: #2a9fd6;
     text-decoration: none;
 }

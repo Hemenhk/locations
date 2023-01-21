@@ -6,6 +6,7 @@ import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -13,7 +14,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
-  useRedirect('loggedOut');
+  useRedirect("loggedOut");
 
   /**
    * This useState hook will create an object with keys that will be passed
@@ -68,8 +69,8 @@ const CreatePostForm = () => {
   /**
    * The handleSubmit async function creates a new FormData class, that creates a post that
    * appends the title, price, contact, content and image. In the try/catch block, the user
-   * sends a post request to the API, with the new formData. If the request is successful, the 
-   * user will be redirected to the new post they created using the data.id of the post. If the 
+   * sends a post request to the API, with the new formData. If the request is successful, the
+   * user will be redirected to the new post they created using the data.id of the post. If the
    * request fails, an error will be logged, only if the error is not a 401 unauthorized request.
    */
   const handleSubmit = async (event) => {
@@ -88,7 +89,7 @@ const CreatePostForm = () => {
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data)
+        setErrors(err.response?.data);
       }
     }
   };
@@ -98,7 +99,7 @@ const CreatePostForm = () => {
       {/* This form allows the user to post their rental location, by typing
         in the title, cost, contact info and some content describing the location */}
 
-      <Form.Group className="mb-3">
+      <Form.Group className={`mb-3 ${styles.Label}`}>
         <Form.Label htmlFor="title">Title:</Form.Label>
         <Form.Control
           type="text"
@@ -110,7 +111,7 @@ const CreatePostForm = () => {
           placeholder="Type Title:"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="price">
+      <Form.Group className={`mb-3 ${styles.Label}`} controlId="price">
         <Form.Label htmlFor="price">Price:</Form.Label>
         <Form.Control
           type="text"
@@ -121,7 +122,7 @@ const CreatePostForm = () => {
           placeholder="Type Price:"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="contact">
+      <Form.Group className={`mb-3 ${styles.Label}`} controlId="contact">
         <Form.Label htmlFor="contact">Contact:</Form.Label>
         <Form.Control
           type="text"
@@ -132,7 +133,7 @@ const CreatePostForm = () => {
           placeholder="Type Contact:"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="content">
+      <Form.Group className={`mb-3 ${styles.Label}`} controlId="content">
         <Form.Label htmlFor="content">Content</Form.Label>
         <Form.Control
           as="textarea"
@@ -144,9 +145,21 @@ const CreatePostForm = () => {
           placeholder="Type Content:"
         />
       </Form.Group>
-        {/* The navigate(-1) is the same as useHistory's go.Back function */}
-      <Button onClick={() => navigate(-1)}>cancel</Button>
-      <Button data-testid="create-test" type="submit">create</Button>
+
+      {/* The navigate(-1) is the same as useHistory's go.Back function */}
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        data-testid="create-test"
+        type="submit"
+      >
+        Create
+      </Button>
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        onClick={() => navigate(-1)}
+      >
+        Cancel
+      </Button>
     </div>
   );
 
@@ -157,14 +170,14 @@ const CreatePostForm = () => {
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
-            <Form.Group className="text-center">
+            <Form.Group className={`text-center ${styles.ImageField}`}>
               {image ? (
                 <>
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
                   <div>
-                    <Form.Label htmlFor="image-upload">
+                    <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
                       Change the image
                     </Form.Label>
                   </div>

@@ -1,3 +1,12 @@
 .Container {
-    min-height: 343px;
-  }
+  min-height: 343px;
+}
+
+.Label {
+  font-family: 'Koulen', cursive;
+  color: #fafafa;
+}
+
+.ImageField {
+  color: #fafafa;
+}
