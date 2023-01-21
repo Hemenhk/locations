@@ -38,8 +38,8 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
+          const { data } = await axiosReq.get(`/profiles/${id}`);
+          const { content, image } = data;
           setProfileData({ name, content, image });
         } catch (err) {
           console.log(err);
@@ -65,17 +65,17 @@ const ProfileEditForm = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("content", content);
-
-    if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
+    // If there exists an image, then replace it with a newly selected one.
+    if (imageFile?.current.files[0]) {
+      formData.append("image", imageFile.current.files[0]);
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
-      setCurrentUser((currentUser) => ({
-        ...currentUser,
-        profile_image: data.image,
-      }));
+      const { data } = await axiosReq.put(`/profiles/${id}`, formData);
+       setCurrentUser((currentUser) => ({
+         ...currentUser,
+         profile_image: data.image,
+       }));
       navigate(-1);
     } catch (err) {
       console.log(err);

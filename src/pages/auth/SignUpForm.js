@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Container,
-  Alert,
-} from "react-bootstrap";
+import { Form, Button, Row, Col, Container, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 
 const SignUpForm = () => {
   /**
-   * 
+   *
    * This useState hook is used to update the state of the
    * three input fields, that the user has to fill in to sign up.
    * An object is used to store the value the user submits.
@@ -30,6 +23,8 @@ const SignUpForm = () => {
   const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
+
+  const [success, setSucces] = useState(false);
 
   /**
    * useNavigate hook used to take the user to a designated url upon successfully signin up.
@@ -61,8 +56,11 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      // user is redirected to the sign in page
-      navigate("/signin");
+      setSucces(true);
+      setTimeout(() => {
+        // user is redirected to the sign in page
+        navigate("/signin");
+      }, 3000);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -70,6 +68,11 @@ const SignUpForm = () => {
 
   return (
     <Row className={`justify-content-center ${styles.Row}`}>
+      <Alert className={appStyles.Success} variant="success" show={success}>
+        <p>
+          Congratulations <span>{username}</span> on creating your account!
+        </p>
+      </Alert>
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={styles.Container}>
           <h1>Sign Up</h1>
@@ -94,8 +97,11 @@ const SignUpForm = () => {
                 This username will be displayed to other users.
               </Form.Text>
             </Form.Group>
-            
-            <Form.Group className={`mb-3 ${styles.Label}`} controlId="password1">
+
+            <Form.Group
+              className={`mb-3 ${styles.Label}`}
+              controlId="password1"
+            >
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -112,7 +118,10 @@ const SignUpForm = () => {
                 </Alert>
               ))}
             </Form.Group>
-            <Form.Group className={`mb-3 ${styles.Label}`} controlId="password2">
+            <Form.Group
+              className={`mb-3 ${styles.Label}`}
+              controlId="password2"
+            >
               <Form.Label className="d-none">Confirm Password</Form.Label>
               <Form.Control
                 className={styles.InputField}
@@ -129,7 +138,9 @@ const SignUpForm = () => {
                 </Alert>
               ))}
             </Form.Group>
-            <Button className={btnStyles.Button} type="submit">Sign Up</Button>
+            <Button className={btnStyles.Button} type="submit">
+              Sign Up
+            </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="warning" key={idx} className="mt-3">
                 {message}
@@ -143,7 +154,6 @@ const SignUpForm = () => {
           </Link>
         </Container>
       </Col>
-      
     </Row>
   );
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import React, { useState } from "react";
+import { Alert, Card, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
@@ -7,7 +7,7 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
-import dropStyles from "../../styles/MoreDropdown.module.css"
+import dropStyles from "../../styles/MoreDropdown.module.css";
 
 const Post = (props) => {
   /**
@@ -106,66 +106,75 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={styles.Post}>
-      <Card.Body
-        className={`align-items-center justify-content-between ${appStyles.PostAvatar}`}
-      >
-        <Link className={styles.OwnerName} to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_image} height={55} /> <span>{owner}</span>
-        </Link>
-        <div className="d-flex align-items-center">
-          {is_owner && postPage && (
-            <MoreDropdown className={dropStyles.Links} handleEdit={handleEdit} handleDelete={handleDelete} />
-          )}
-        </div>
-        <div>
-          <span className={styles.Title}>{title && <Card.Title className="text-center">{title}</Card.Title>}</span>
-        </div>
-        
-      </Card.Body>
-      <Link to={`/posts/${id}`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
-      <Card.Body className={appStyles.PostContent}>
-        <div className={styles.Updated}>
-          <span>{updated_at}</span>
-        </div>
-
-        {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't rate your own post!</Tooltip>}
-            >
-              <i className={`fa-solid fa-star ${styles.Star}`} />
-            </OverlayTrigger>
-          ) : // If there is a matching rating id, then the user will be able to decrement it
-          rating_id ? (
-            <span onClick={handleUnrating}>
-              <i className={`fa-solid fa-star ${styles.Star}`} />
-            </span>
-          ) : currentUser ? (
-            // If the current user exists, they will be able to rate a post
-            <span onClick={handleRating}>
-              <i className={`fa-solid fa-star ${styles.StarOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to rate posts!</Tooltip>}
-            >
-              <i className="fa-solid fa-star" />
-            </OverlayTrigger>
-          )}
-          {ratings_count}
-          <Link to={`/posts/${id}`}>
-            <i className={`far fa-comments ${styles.Star}`} />
+    <Col className="my-auto p-0 p-md-2">
+      <Card className={styles.Post}>
+        <Card.Body
+          className={`align-items-center justify-content-between ${appStyles.PostAvatar}`}
+        >
+          <Link className={styles.OwnerName} to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} height={55} /> <span>{owner}</span>
           </Link>
-          {reviews_count}
-        </div>
-      </Card.Body>
-    </Card>
+          <div className="d-flex align-items-center">
+            {is_owner && postPage && (
+              <MoreDropdown
+                className={dropStyles.Links}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
+          </div>
+          <div>
+            <span className={styles.Title}>
+              {title && (
+                <Card.Title className="text-center">{title}</Card.Title>
+              )}
+            </span>
+          </div>
+        </Card.Body>
+        <Link to={`/posts/${id}`}>
+          <Card.Img src={image} alt={title} />
+        </Link>
+        <Card.Body className={appStyles.PostContent}>
+          <div className={styles.Updated}>
+            <span>{updated_at}</span>
+          </div>
+
+          {content && <Card.Text>{content}</Card.Text>}
+          <div className={styles.PostBar}>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't rate your own post!</Tooltip>}
+              >
+                <i className={`fa-solid fa-star ${styles.Star}`} />
+              </OverlayTrigger>
+            ) : // If there is a matching rating id, then the user will be able to decrement it
+            rating_id ? (
+              <span onClick={handleUnrating}>
+                <i className={`fa-solid fa-star ${styles.Star}`} />
+              </span>
+            ) : currentUser ? (
+              // If the current user exists, they will be able to rate a post
+              <span onClick={handleRating}>
+                <i className={`fa-solid fa-star ${styles.StarOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to rate posts!</Tooltip>}
+              >
+                <i className="fa-solid fa-star" />
+              </OverlayTrigger>
+            )}
+            {ratings_count}
+            <Link to={`/posts/${id}`}>
+              <i className={`far fa-comments ${styles.Star}`} />
+            </Link>
+            {reviews_count}
+          </div>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 

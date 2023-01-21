@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
+import { Form, Button, Row, Col, Container, Image, Alert } from "react-bootstrap";
 
 import Upload from "../../assets/upload.png";
 
@@ -13,6 +13,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
+  const [success, setSucces] = useState(false);
 
   /**
    * This useState hook will create an object with keys that will be passed
@@ -83,7 +84,10 @@ const CreatePostForm = () => {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      navigate(`/posts/${data.id}`);
+      setSucces(true);
+      setTimeout(() => {
+        navigate(`/posts/${data.id}`);
+      }, 2000);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -152,10 +156,7 @@ const CreatePostForm = () => {
       >
         Create
       </Button>
-      <Button
-        className={btnStyles.Button}
-        onClick={() => navigate(-1)}
-      >
+      <Button className={btnStyles.Button} onClick={() => navigate(-1)}>
         Cancel
       </Button>
     </div>
@@ -164,6 +165,11 @@ const CreatePostForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
+      <Alert className={appStyles.Success} variant="success" show={success}>
+        <p>
+          Successfully created a post!
+        </p>
+      </Alert>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
@@ -175,7 +181,10 @@ const CreatePostForm = () => {
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
                   <div>
-                    <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
+                    <Form.Label
+                      className={`${btnStyles.Button} btn`}
+                      htmlFor="image-upload"
+                    >
                       Change the image
                     </Form.Label>
                   </div>

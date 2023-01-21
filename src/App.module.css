@@ -44,6 +44,12 @@
   object-fit: contain;
 }
 
+.Success {
+  height: 75px;
+  width: 100px;
+  text-align: center;
+}
+
 * {
   box-sizing: border-box;
 }

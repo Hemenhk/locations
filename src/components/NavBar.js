@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Container, Navbar, Nav, ThemeProvider } from "react-bootstrap";
+import { Container, Navbar, Nav, ThemeProvider, Alert } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
@@ -95,7 +95,6 @@ const NavBar = () => {
             aria-controls="basic-navbar-nav"
           />
 
-            
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto text-left">
               <NavLink className={styles.NavLink} to="/">

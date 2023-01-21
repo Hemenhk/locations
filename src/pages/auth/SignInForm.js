@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpInForm.module.css";
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
@@ -25,7 +25,7 @@ const SignInForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  const [showAlert, setShowAlert] = useState(false);
+  const [success, setSucces] = useState(false);
 
   /**
    * useNavigate hook used to take the user to a designated url upon successfully signing in.
@@ -59,15 +59,22 @@ const SignInForm = () => {
       const { data } = await axios.post("dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
-      navigate("/");
+      setSucces(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (err) {
       setErrors(err.response?.data);
-      }
     }
+  };
 
   return (
     <Row className={`justify-content-center ${styles.Row}`}>
-      
+      <Alert className={appStyles.Success} variant="success" show={success}>
+        <p>
+          Successfully signed in as <span>{username}</span>!
+        </p>
+      </Alert>
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${styles.Container} p-4`}>
           <h1>Sign In</h1>
@@ -95,7 +102,11 @@ const SignInForm = () => {
                 placeholder="Enter Password:"
               />
             </Form.Group>
-            <Button className={btnStyles.Button} variant="primary" type="submit">
+            <Button
+              className={btnStyles.Button}
+              variant="primary"
+              type="submit"
+            >
               Sign In
             </Button>
           </Form>
