@@ -337,4 +337,81 @@ A 404 page is displayed if the user lands on an non-existing url, that tells the
 
 ## Testing
 
-The testing documentation for this project can be found [here]
+The testing documentation for this project can be found [here](https://github.com/Hemenhk/locations/blob/main/TESTING.md)
+
+
+## Deployment
+
+The project was deployed using [GitPod](https://gitpod.io/). All code was commited to [Git](https://git-scm.com) and then pushed on to [GitHub](https://github.com/) using the terminal in [GitPod](https://gitpod.io/). The application is deployed on Heroku.
+
+### How To Use This Project
+
+To use this project, one can either fork or clone the repository.
+
+#### Forking 
+By forking this repository you copy the original to view and make changes to the code, without affecting the original repository by following these steps:
+
+1. Log into your GitHub account.
+2. Navigate to the repository and in the upper-right corner, click on "Fork". 
+3. In the "Create a new fork" page, press the "Create fork" button.
+4. To edit the code, click on the "Gitpod" button to launch your own workspace. 
+5. Changes in the new repository can be merged with the original via a pull request.
+
+
+#### Clone GitHub Repository
+
+By cloning the GitHub repository, you can create a local copy of the original on your own system. To clone this repository follow these steps:
+
+1. Log into your GitHub account.
+2. Navigate to the repository and click the dropdown on the "Code" button..
+3. To clone using HTTPS, copy the code provided in the field.
+4. Open Git Bash and change the current directory to the location where you wish the cloned directory to be made.
+5. Type git clone, then paste the URL that you copied.
+6. Press Enter, and your local clone is created.
+
+
+### Deployment To Heroku
+
+This project is deployed using Heroku, with all static files being uploaded to Cloudinary. These are the steps to deploy to Heroku:
+
+1. Log in to your Heroku account.
+2. Press "Create new app", and select the desired app name and the region of which you are located, then press "Create app".
+3. Press the "Deploy" tab and click on "GitHub" in the "Deployment method" field. 
+4. In the "Connect to GitHub" section select your profile and search for the repository. When the repository appears, click on "Connect".
+5. When the connection is successful, scroll down to the "Manual deplpoy" section and click on "Deploy Branch". 
+6. When the app is successfully deployed, press "Open app" to see the final application. 
+
+
+## Credits
+
+### Media 
+
+* [Unsplash](https://unsplash.com/)
+    * All images used for the posts where downloaded from unsplash.
+
+
+### Code
+
+* The code from Code Institute's "Moments" project was used as the main reference, from which this project was built, and was of great help.
+
+## Known Bugs
+
+**Fetching post edit fields from API**
+
+An issue occured when fetching the prepolulated fields in the PostEditForm. The "price" and "contact" fields were returned empty.
+
+This issue was resolved by adding the necessary models and meta fields in the API used for this project. After which the fields were returned prepopulated with the original posts input. 
+
+**Editing the profile**
+
+An issue occured when trying to send a request interceptor to the API, by using the PUT method. When trying to change the avatar image and bio, a 400 Bad Request error was thrown. The code was correct, in both the front-end and back-end. 
+
+No solution has been found so far, and due to time limits, will be fixed in the future. 
+
+## Acknowledgements 
+
+* My family for showing me support during the development of this project.
+
+* My mentor, Marcel, for providing invaluable knowledge and feedback during out meetings. His perspective has been immensely useful, and without his help, some code may not have made an appearence. 
+
+* Code Institute for providing me with the material to build this project, and the Slack community for their help and positive comments. 
