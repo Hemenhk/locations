@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { Col, Container, Form, NavLink, Row } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import styles from "../../styles/Home.module.css";
 import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -9,6 +9,7 @@ import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Home = ({ message, filter = "" }) => {
   /**
@@ -19,6 +20,8 @@ const Home = ({ message, filter = "" }) => {
 
   // This useState will create a loading asset if the posts are loading
   const [hasLoaded, setHasLoaded] = useState(false);
+
+  const currentUser = useCurrentUser();
 
   /**
    * The useLocation hook will be used to track the URL, thus allowing
@@ -62,9 +65,34 @@ const Home = ({ message, filter = "" }) => {
     };
   }, [filter, pathname, query]);
 
+  const loggedOutMessage = (
+    <>
+      <p>
+        Welcome to <span>Locations</span>! This website allows users to find
+        rental locations around the globe! <Link className={styles.Link} to="/signup">
+          <span>Sign up</span>
+        </Link>{" "}
+        to post your own locations!
+      </p>
+    </>
+  );
+
+  const loggedInMessage = (
+    <>
+      <p>
+        Welcome to <span>Locations</span>! Seems like you're logged in. Why not <Link className={styles.Link} to="/posts/create">
+          <span>post your own rental location?</span>
+        </Link>
+      </p>
+    </>
+  );
+
   return (
     <Row className="h-100 justify-content-center">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col className={`py-5 p-0 p-lg-2 ${styles.Welcome}`} lg={8}>
+        {currentUser ? loggedInMessage : loggedOutMessage}
+      </Col>
+      <Col className="py-2 p-lg-2" lg={8}>
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -88,7 +116,7 @@ const Home = ({ message, filter = "" }) => {
           <>
             {/* An InfiniteScroll component is used to display all fetched posts on a single page without
             the need for a next button. This creates good UX, as it creates a seamless scroll functionality. */}
-            
+
             {posts.results.length ? (
               <InfiniteScroll
                 children={posts.results.map((post) => (

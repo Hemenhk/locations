@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { Container, Navbar, Nav, ThemeProvider, Alert } from "react-bootstrap";
+import { Container, Navbar, Nav, ThemeProvider } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,

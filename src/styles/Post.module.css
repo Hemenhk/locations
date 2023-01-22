@@ -17,10 +17,15 @@ h5 {
   text-align: left;
 }
 
+.Tags {
+  font-family: "Koulen", cursive;
+  letter-spacing: 2px;
+}
+
 .OwnerName {
   color: #fafafa;
   text-decoration: none;
-  font-family: 'Koulen', cursive;
+  font-family: "Koulen", cursive;
   font-size: 1.5rem;
   letter-spacing: 2px;
 }
@@ -30,11 +35,10 @@ h5 {
 }
 
 .Title {
-  font-family: 'Koulen', cursive;
+  font-family: "Koulen", cursive;
   font-size: 1rem;
   letter-spacing: 2px;
 }
-
 
 .Star {
   color: #2a9fd6;

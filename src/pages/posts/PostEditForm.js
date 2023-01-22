@@ -133,7 +133,7 @@ const PostEditForm = () => {
           placeholder="Type Title:"
         />
       </Form.Group>
-      <Form.Group className={`mb-3 ${styles.Label}`} controlId="price">
+      <Form.Group className={`mb-3 ${styles.Label}`}>
         <Form.Label>Price:</Form.Label>
         <Form.Control
           type="text"
@@ -143,7 +143,7 @@ const PostEditForm = () => {
           placeholder="Type Price:"
         />
       </Form.Group>
-      <Form.Group className={`mb-3 ${styles.Label}`} controlId="contact">
+      <Form.Group className={`mb-3 ${styles.Label}`}>
         <Form.Label>Contact:</Form.Label>
         <Form.Control
           type="text"
@@ -153,7 +153,7 @@ const PostEditForm = () => {
           placeholder="Type Contact:"
         />
       </Form.Group>
-      <Form.Group className={`mb-3 ${styles.Label}`} controlId="content">
+      <Form.Group className={`mb-3 ${styles.Label}`}>
         <Form.Label>Content:</Form.Label>
         <Form.Control
           as="textarea"

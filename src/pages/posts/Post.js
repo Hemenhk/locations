@@ -18,6 +18,8 @@ const Post = (props) => {
     owner,
     created_at,
     updated_at,
+    contact,
+    price,
     content,
     image,
     profile_id,
@@ -136,9 +138,10 @@ const Post = (props) => {
         </Link>
         <Card.Body className={appStyles.PostContent}>
           <div className={styles.Updated}>
-            <span>{updated_at}</span>
+            <span className={styles.Tags}>{updated_at}</span>
           </div>
-
+          {price && <Card.Text><span className={styles.Tags}>Price:</span> {price}</Card.Text>}
+          {contact && <Card.Text><span className={styles.Tags}>Contact:</span> {contact}</Card.Text>}
           {content && <Card.Text>{content}</Card.Text>}
           <div className={styles.PostBar}>
             {is_owner ? (

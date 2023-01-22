@@ -18,3 +18,28 @@
   cursor: default;
   color: #2a9fd6;
 }
+
+.Welcome {
+  font-size: 2rem;
+  font-family: "Koulen", cursive;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #2a9fd6;
+}
+
+.Welcome span {
+  color: #2a9fd6;
+
+}
+
+.Link {
+  color: #2a9fd6;
+  text-decoration: none;
+}
+
+.Link span:hover {
+  color: #d37d36;
+  text-decoration: none;
+}
