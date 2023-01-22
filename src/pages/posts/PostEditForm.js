@@ -7,7 +7,6 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-
 const PostEditForm = () => {
   const [errors, setErrors] = useState({});
 
@@ -43,7 +42,7 @@ const PostEditForm = () => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/${id}`);
+        const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, price, contact, content, image, is_owner } = data;
 
         is_owner
@@ -108,7 +107,7 @@ const PostEditForm = () => {
     }
 
     try {
-      await axiosReq.put(`/posts/${id}`, formData);
+      await axiosReq.put(`/posts/${id}/`, formData);
       navigate(`/posts/${id}`);
     } catch (err) {
       console.log(err);
@@ -165,8 +164,12 @@ const PostEditForm = () => {
         />
       </Form.Group>
       {/* The navigate(-1) is the same as useHistory's go.Back function */}
-      <Button className={btnStyles.Button} onClick={() => navigate(-1)}>cancel</Button>
-      <Button className={btnStyles.Button} type="submit">Save</Button>
+      <Button className={btnStyles.Button} type="submit">
+        Save
+      </Button>
+      <Button className={btnStyles.Button} onClick={() => navigate(-1)}>
+        cancel
+      </Button>
     </div>
   );
 
@@ -178,15 +181,17 @@ const PostEditForm = () => {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className={`text-center ${styles.ImageField}`}>
-              
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
-                      Change the image
-                    </Form.Label>
-                  </div>
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
+                <Form.Label
+                  className={`${btnStyles.Button} btn`}
+                  htmlFor="image-upload"
+                >
+                  Change the image
+                </Form.Label>
+              </div>
               <Form.Control
                 type="file"
                 id="image-upload"

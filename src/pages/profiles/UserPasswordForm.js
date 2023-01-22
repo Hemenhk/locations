@@ -91,15 +91,16 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Button className={`mt-2 ${btnStyles.Button}`}
-              onClick={() =>  navigate(-1)}
-            >
-              cancel
-            </Button>
-            <Button className={`mt-2 ${btnStyles.Button}`}
               type="submit"
             >
               save
             </Button>
+            <Button className={`mt-2 ${btnStyles.Button}`}
+              onClick={() =>  navigate(-1)}
+            >
+              cancel
+            </Button>
+            
           </Form>
         </Container>
       </Col>

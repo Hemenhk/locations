@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
-import appStyles from "../../App.module.css"
+import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,7 +16,6 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -72,14 +71,14 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
+            <Button className={`mt-2 ${btnStyles.Button}`} type="submit">
+              save
+            </Button>
             <Button
               className={`mt-2 ${btnStyles.Button}`}
               onClick={() => navigate(-1)}
             >
               cancel
-            </Button>
-            <Button className={`mt-2 ${btnStyles.Button}`} type="submit">
-              save
             </Button>
           </Form>
         </Container>
