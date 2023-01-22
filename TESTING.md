@@ -2,11 +2,13 @@
 
 [Return to the README.md file](https://github.com/Hemenhk/locations/blob/main/README.md)  
 
+[View live website here!](https://locations-p5.herokuapp.com/)
+
 ## Table of Contents
 
 1. [Testing User Stories](#testing-user-stories)
-2. [Code Validation](#code-validation)
-4. [Tools Testing](#tools-testing)
+2. [Lighthouse-testing](#lighthouse-testing)
+4. [Testing Tools](#testing-tools)
 5. [Manual Testing](#manual-testing)
 6. [Unit Testing](#unit-testing)
 
@@ -132,7 +134,7 @@
 * A signed in user can leave reviews on each post.
 
 
-### Lighthouse Testing
+## Lighthouse Testing
 
 Page | Lighthouse Test |
 | --- | --- |
