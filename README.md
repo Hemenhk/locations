@@ -169,8 +169,32 @@ GitHub projects was used as my project management tool to track the determined u
 ![User Stories Progress -- Step 6](src/assets/readme/step%207.png)
 
 
+### Structure
+
+![Location Site Structure](src/assets/readme/tree%20structure.png)
+
 #### Database
 
 The databse model was designed using [drawsql](https://drawsql.app/) The type of databases being used are SQLite3 during development, and [PostgreSQL](https://www.postgresql.org/).
 
 ![Locations Database Model](src/assets/readme/database.png)
+
+### Design
+
+#### Color Scheme 
+
+As the app is a blog/post application, there is a lot of unused space on the screen. As such a darker scheme was chosen, as the white background was visually unappealing. For the various elements such as links and spans, a light blue color was chosen as an accent.
+
+* App background: #101010
+
+* Content background: #202020
+
+* PostContent: #1a1a1a
+
+* Accents: #2a9fd6
+
+* Misc: #d37d36
+
+#### Typography
+
+

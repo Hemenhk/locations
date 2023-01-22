@@ -7,19 +7,19 @@
 
 .ProfileOwner {
     color: #fafafa;
-    font-family: 'Koulen', cursive;
+    font-family: 'Oswald', sans-serif;
     letter-spacing: 2px;
 }
 
 .Stats {
     color: #fafafa;
-    font-family: 'Koulen', cursive;
+    font-family: 'Oswald', sans-serif;
 
 }
 
 .ProfilePost {
     color: #2a9fd6;
-    font-family: 'Koulen', cursive;
+    font-family: 'Oswald', sans-serif;
 }
 
 @media screen and (max-width: 991px) {

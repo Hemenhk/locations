@@ -9,7 +9,7 @@
 }
 
 .Label {
-  font-family: 'Koulen', cursive;
+  font-family: 'Oswald', sans-serif;
   color: #fafafa;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .Success {
-  font-family: 'Koulen', cursive;
+  font-family: 'Oswald', sans-serif;
   letter-spacing: 2px;
   height: 75px;
   width: 100px;

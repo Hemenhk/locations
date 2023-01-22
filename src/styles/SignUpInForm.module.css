@@ -1,7 +1,7 @@
 h1 {
     text-align: center;
     text-transform: uppercase;
-    font-family: 'Koulen', cursive;
+    font-family: 'Oswald', sans-serif;
     font-size: 1rem;
     font-weight: bold;
     line-height: 1rem;
@@ -16,7 +16,7 @@ h1 {
 }
 
 .Label {
-    font-family: 'Koulen', cursive;
+    font-family: 'Oswald', sans-serif;
     color: #fafafa;
   }
 
