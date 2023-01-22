@@ -12,6 +12,9 @@ import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Home = ({ message, filter = "" }) => {
+
+  const currentUser = useCurrentUser();
+
   /**
    * This useState hook will create a default value of an object
    * with the key being results, and its value being an empty array of posts.
@@ -20,8 +23,6 @@ const Home = ({ message, filter = "" }) => {
 
   // This useState will create a loading asset if the posts are loading
   const [hasLoaded, setHasLoaded] = useState(false);
-
-  const currentUser = useCurrentUser();
 
   /**
    * The useLocation hook will be used to track the URL, thus allowing
@@ -63,7 +64,7 @@ const Home = ({ message, filter = "" }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, pathname, query]);
+  }, [filter, pathname, query, currentUser]);
 
   const loggedOutMessage = (
     <>
