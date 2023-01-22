@@ -332,3 +332,9 @@ A 404 page is displayed if the user lands on an non-existing url, that tells the
 * [Chrome DevTools](https://developer.chrome.com/docs/devtools/) was used during development to debug the app. 
 
 * [W3C Markup Validator](https://validator.w3.org/) was used to validate custom CSS code.
+
+* [Favicon.io](https://favicon.io) was used to add a custom favicon.
+
+## Testing
+
+The testing documentation for this project can be found [here]
