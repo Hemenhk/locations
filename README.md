@@ -37,6 +37,16 @@ Visit the deployed application [here](https://locations-p5.herokuapp.com/).
    4. [Database Management](#database-management)
    6. [Cloud Storage](#cloud-storage)
    7. [Tools and Programs](#tools-and-programs)
+4. [Testing](#testing)
+    1. [Go to TESTING.md](https://github.com/Hemenhk/locations/blob/main/TESTING.md)
+5. [Deployment](#deployment)
+    1. [How To Use This Project](#how-to-use-this-project)  
+    2. [Deployment to Heroku](#deployment-to-heroku)   
+6. [Credits](#credits)
+    1. [Media](#media)  
+    2. [Code](#code)   
+7. [Known Bugs](#known-bugs)
+8. [Acknowledgements](#acknowledgements)
 
 ## User Experience (UX)
 
@@ -347,6 +357,10 @@ A 404 page is displayed if the user lands on an non-existing url, that tells the
 ## Testing
 
 The testing documentation for this project can be found [here](https://github.com/Hemenhk/locations/blob/main/TESTING.md)
+
+## Testing
+
+Testing documentation can be found [here](https://github.com/Hemenhk/locations/blob/main/TESTING.md)
 
 ## Deployment
 
