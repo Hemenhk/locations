@@ -27,8 +27,30 @@ Visit the deployed application [here](https://locations-p5.herokuapp.com/).
     5. [Surface](#surface)
         1. [Color Scheme]
         2. [Typography]
-
-
+2. [Features](#features)
+   1. [NavBar](#navbar)
+   2. [Home Page](#home-page)
+   3. [Products Page](#products-page)
+   4. [Product Details Page](#product-details-page)
+   5. [Products Admin](#products-admin)
+   5. [Shopping Bag Page](#shopping-bag-page)
+   6. [Checkout Page](#checkout-page)
+   7. [Checkout Success Page](#checkout-success-page)
+   8. [Profile Page](#profile-page)
+   9. [Favorites Page](#favorites-page)
+   10. [Reviews Page](#reviews-page)
+   11. [Reviews Admin](#reviews-admin)
+   12. [Organizations Page](#organizations-page)
+   13. [Accounts Pages](#accounts-pages)
+   14. [404 Error Page](#404-error-page)
+3. [Technologies Used](#technologies-used)
+    1. [Languages Used](#languages-used)
+    2. [Libraries and Frameworks](#languages-and-frameworks)
+    3. [Packages / Dependencies Installed](#packages--dependencies-installed)
+    4. [Database Management](#database-management)
+    5. [Payment Service](#payment-service)
+    6. [Cloud Storage](#cloud-storage)
+    7. [Tools and Programs](#tools-and-programs)
 ## User Experience (UX)
 
 ### Strategy
@@ -197,4 +219,116 @@ As the app is a blog/post application, there is a lot of unused space on the scr
 
 #### Typography
 
+The font mainly used across the website was Oswald. It was used at one weight. The other was Koulen, which was used for the navlinks, as it has more weight.
 
+There two fonts were chosen as they grab the attention of the user, whilst providing an easy reading experience. 
+
+
+## Features 
+
+### Navbar
+
+* The NavBar component contains a logo and navigation links.
+
+* The logo acts as a link to the home page.
+
+* The NavBar has a conditional rendering depending on the user's sign in status. If the user is not signed in, the home, sign in and sign up icons appear. If the user is signed in, the home, add post, sign out and profile icons appear instead. 
+
+### Home Page
+
+#### Welcome Message
+
+The first section of the home page is a welcoming message. It renders conditionally on the user's signed in status. If the user is signed out, then the message encourages them to sign up. If the user is signed in, the message urges the user to add a post.
+
+#### Search Bar
+
+* The search bar allows users to search the app for specific posts or users using keywords.
+
+#### Infinity Post Page
+
+The main part of the home page are the display of posts. By using the infinity component, posts fetched load seemlessly.
+
+### Sign In Page
+
+The sign in page contains a form with two input fields labelled "username" and "password". Underneath the fields, the user is urged to create an account if they have not already done so.
+
+### Sign Up Page
+
+The sign up page contains a form with three input fields for username, password and confirm password. Underneath the form, the user is reminded of signing in to an existing account if they already have one.
+
+### Add Posts Page
+
+The add post page, contains a form where the user can fill in title, price, contact, content and image fields. Upon successfully filling the fields, they submit a new post to the app, which will be displayed on their profile page and the home page.
+
+### Profile Page
+
+The profile page contains a loop of posts created by the user. Here the user can edit their own profile and their posts. 
+
+#### Edit Profile Page
+
+The user is able to change their avatar and add a bio.
+
+#### Change Username Page
+
+The user is able to change their username.
+
+#### Change Password Page
+
+The user is able to change their passsword.
+
+### Post Detail Page
+
+The user is able to rate and review each post, as long as it does not belong to them. If it does belong to the user, they can edit their post. 
+
+### 404 Error Page
+
+A 404 page is displayed if the user lands on an non-existing url, that tells them there is nothing to be seen.
+
+## Technologies Used
+
+### Languages Used
+
+* [HTML5](https://en.wikipedia.org/wiki/HTML)
+* [CSS3](https://en.wikipedia.org/wiki/CSS)
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
+### Libraries and Frameworks
+
+* [React](https://reactjs.org/) was used to build the app.
+
+* [React Bootstrap](https://react-bootstrap.github.io/) was used to style the app and help with responsiveness.
+
+* [Axios](https://axios-http.com/) was used to fetch request and responses from the API.
+
+* [Testing Library](https://testing-library.com/) was used to test the code written.
+
+* [React Router Dom](https://reactrouter.com/) was used for easy routing functionality.
+
+* [Google Fonts](https://fonts.google.com) was used to import fonts to the HTML file, and used throughout the project.
+
+* [Font Awesome](https://fontawesome.com) was used to add icons to various links.
+
+
+### Database Management
+
+* [SQLite](https://www.sqlite.com/index.html) database was used as the database during the development.
+
+* [ElephantSQL - Postgres](https://www.elephantsql.com/) database was used in production, based on Postgres and provided by ElephantSQL.
+
+### Cloud Storage
+
+* [Cloudinary](https://cloudinary.com/) was used to store static and media files.
+
+### Tools and Programs
+
+* [Git](https://git-scm.com)
+
+* [GitPod](https://gitpod.io/)
+
+* [GitHub](https://github.com/)
+
+* [Heroku](https://heroku.com)
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/) was used during development to debug the app. 
+
+* [W3C Markup Validator](https://validator.w3.org/) was used to validate custom CSS code.
