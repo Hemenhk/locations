@@ -1,6 +1,10 @@
 import jwtDecode from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
 
+/**
+ * This code was borred by Code Insitute's 'Moments' Project
+ */
+
 export const fetchMoreData = async (resource, setResource) => {
   try {
     const { data } = await axiosReq.get(resource.next);

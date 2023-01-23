@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Alert, Card, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
