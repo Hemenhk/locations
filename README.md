@@ -22,7 +22,10 @@ Visit the deployed application [here](https://locations-p5.herokuapp.com/).
    4. [Design](#design)
       1. [Color Scheme](#color-scheme)
       2. [Typography](#typography)
-2. [Features](#features)
+2. [Reused Components](#reused-components)
+   1. [Asset Component](#asset-component)
+   2. [More Dropdown Component](#more-dropdown-component)
+3. [Features](#features)
    1. [NavBar](#navbar)
    2. [Home Page](#home-page)
    3. [Sign In Page](#sign-in-page)
@@ -31,22 +34,22 @@ Visit the deployed application [here](https://locations-p5.herokuapp.com/).
    6. [Profile Page](#profile-page)
    7. [Post Detail Page](#post-detail-page)
    8. [404 Error Page](#404-error-page)
-3. [Technologies Used](#technologies-used)
+4. [Technologies Used](#technologies-used)
    1. [Languages Used](#languages-used)
    2. [Libraries and Frameworks](#libraries-and-frameworks)
    4. [Database Management](#database-management)
    6. [Cloud Storage](#cloud-storage)
    7. [Tools and Programs](#tools-and-programs)
-4. [Testing](#testing)
+5. [Testing](#testing)
     1. [Go to TESTING.md](https://github.com/Hemenhk/locations/blob/main/TESTING.md)
-5. [Deployment](#deployment)
+6. [Deployment](#deployment)
     1. [How To Use This Project](#how-to-use-this-project)  
     2. [Deployment to Heroku](#deployment-to-heroku)   
-6. [Credits](#credits)
+7. [Credits](#credits)
     1. [Media](#media)  
     2. [Code](#code)   
-7. [Known Bugs](#known-bugs)
-8. [Acknowledgements](#acknowledgements)
+8. [Known Bugs](#known-bugs)
+9. [Acknowledgements](#acknowledgements)
 
 ## User Experience (UX)
 
@@ -217,6 +220,17 @@ As the app is a blog/post application, there is a lot of unused space on the scr
 The font mainly used across the website was Oswald. It was used at one weight. The other was Koulen, which was used for the navlinks, as it has more weight.
 
 There two fonts were chosen as they grab the attention of the user, whilst providing an easy reading experience.
+
+
+## Reused Components
+
+### Asset Component
+
+The Asset component is a reusable file that has been used on the home, post detail, and profile pages. The Asset component is a loading spinner, used when the application is loading more posts. It creates good user experience, as the user understands what is going on. New posts aren't loaded unexpectedly, but instead, the user knows to expect them to load. 
+
+### More Dropdown Component
+
+The More Dropdown component is a reusable file that has been implemented on the post, review and profile pages. This component allows users to edit or delete posts, reviews and profiles, without having to write new code every time it is required. 
 
 ## Features
 
