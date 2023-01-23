@@ -11,7 +11,10 @@ import styles from "../../styles/SignUpInForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
+
+
 const SignUpForm = () => {
+
   /**
    *
    * This useState hook is used to update the state of the

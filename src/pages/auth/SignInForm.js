@@ -13,8 +13,11 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { setTokenTimestamp } from "../../utils/utils";
 
+
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
+
+  
   /**
    * This useState hook is used to update the state of the
    * two input fields, that the user has to fill in to sign in.
@@ -66,7 +69,7 @@ const SignInForm = () => {
       setTokenTimestamp(data);
       setSucces(true);
       setTimeout(() => {
-        navigate("/");
+        navigate(-1);
       }, 3000);
     } catch (err) {
       setErrors(err.response?.data);

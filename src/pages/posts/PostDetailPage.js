@@ -27,6 +27,8 @@ const PostDetailPage = () => {
    */
   const [post, setPost] = useState({ results: [] });
 
+  const [hasLoaded, setHasLoaded] = useState(false);
+
   const currentUser = useCurrentUser();
 
   const profile_image = currentUser?.profile_image;
@@ -43,6 +45,7 @@ const PostDetailPage = () => {
         ]);
         setPost({ results: [post] });
         setReviews(reviews);
+        setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
@@ -54,43 +57,47 @@ const PostDetailPage = () => {
 
   return (
     <Row className="h-100 justify-content-center">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        {/* Import Post component, and spread the post results from setPost */}
-        <Post {...post.results[0]} setPosts={setPost} postPage />
-        <Container className={appStyles.Content}>
-          {currentUser ? (
-            <CreateReviewForm
-              profile_id={currentUser.profile_id}
-              profileImage={profile_image}
-              post={id}
-              setPost={setPost}
-              setReviews={setReviews}
-            />
-          ) : reviews.results.length ? (
-            "Reviews"
-          ) : null}
-          {reviews.results.length ? (
-            <InfiniteScroll
-              children={reviews.results.map((review) => (
-                <Review
-                  key={review.id}
-                  {...review}
-                  setPost={setPost}
-                  setReviews={setReviews}
-                />
-              ))}
-              dataLength={reviews.results.length}
-              loader={<Asset spinner/>}
-              hasMore={!!reviews.next}
-              next={() => fetchMoreData(reviews, setReviews)}
-            />
-          ) : currentUser ? (
-            <span>Be the first to leave a review!</span>
-          ) : (
-            <span>No reviews yet...</span>
-          )}
-        </Container>
-      </Col>
+      {hasLoaded ? (
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          {/* Import Post component, and spread the post results from setPost */}
+          <Post {...post.results[0]} setPosts={setPost} postPage />
+          <Container className={appStyles.Content}>
+            {currentUser ? (
+              <CreateReviewForm
+                profile_id={currentUser.profile_id}
+                profileImage={profile_image}
+                post={id}
+                setPost={setPost}
+                setReviews={setReviews}
+              />
+            ) : reviews.results.length ? (
+              "Reviews"
+            ) : null}
+            {reviews.results.length ? (
+              <InfiniteScroll
+                children={reviews.results.map((review) => (
+                  <Review
+                    key={review.id}
+                    {...review}
+                    setPost={setPost}
+                    setReviews={setReviews}
+                  />
+                ))}
+                dataLength={reviews.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!reviews.next}
+                next={() => fetchMoreData(reviews, setReviews)}
+              />
+            ) : currentUser ? (
+              <span>Be the first to leave a review!</span>
+            ) : (
+              <span>No reviews yet...</span>
+            )}
+          </Container>
+        </Col>
+      ) : (
+        <Asset spinner />
+      )}
     </Row>
   );
 };

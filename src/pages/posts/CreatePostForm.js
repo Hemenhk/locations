@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -17,10 +17,14 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const CreatePostForm = () => {
   const [errors, setErrors] = useState({});
   const [success, setSucces] = useState(false);
+
+  const currentUser = useCurrentUser();
+
 
   /**
    * This useState hook will create an object with keys that will be passed
@@ -41,6 +45,14 @@ const CreatePostForm = () => {
 
   // useNavigate hook will be used to redirect the user after successfully creating a post
   const navigate = useNavigate();
+
+  // if the user is not logged in, they will be redirected to the sign in page
+  useEffect(() => {
+    if(!currentUser){
+      navigate("/signin")
+    }
+  }, [navigate])
+  
 
   /**
    * This handleChange function is used to intercept the user's input
