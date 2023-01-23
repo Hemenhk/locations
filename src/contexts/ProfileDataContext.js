@@ -1,5 +1,9 @@
 import { useContext, createContext, useState } from "react";
 
+/**
+ * This code was borred by Code Insitute's 'Moments' Project
+ */
+
 export const ProfileDataContext = createContext();
 export const SetProfileDataContext = createContext();
 

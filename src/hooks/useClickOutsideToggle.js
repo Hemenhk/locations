@@ -1,4 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+/**
+ * This code was borred by Code Insitute's 'Moments' Project
+ */
 
 const useClickOutsideToggle = () => {
   // This useState hook allows us to manipulate the navbar burger menu

@@ -3,6 +3,10 @@ import { Spinner } from 'react-bootstrap';
 import styles from "../styles/Asset.module.css";
 
 
+/**
+ * This code was borred by Code Insitute's 'Moments' Project
+ */
+
 // Destructure props that this component recieves
 const Asset = ({ spinner, src, message }) => {
   return (
