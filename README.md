@@ -1,6 +1,6 @@
 # Locations
 
-![Locations mockup images](src/assets/readme/home%20page.png)
+![](src/assets/readme/intro.png)
 
 Locations is a React website that offers the user an opportunity to post a rental location.
 
@@ -367,6 +367,9 @@ A 404 page is displayed if the user lands on an non-existing url, that tells the
 - [W3C Markup Validator](https://validator.w3.org/) was used to validate custom CSS code.
 
 - [Favicon.io](https://favicon.io) was used to add a custom favicon.
+
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to display the application on different screen sizes in this file.
+
 
 ## Testing
 
