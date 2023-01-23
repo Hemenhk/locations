@@ -13,9 +13,12 @@ import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import Asset from "../../components/Asset";
 
 const PostEditForm = () => {
   const [errors, setErrors] = useState({});
+
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   /**
    * This useState hook will create an object with keys that will be passed
@@ -51,6 +54,7 @@ const PostEditForm = () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, price, contact, content, image, is_owner } = data;
+        setHasLoaded(true);
 
         is_owner
           ? setPostData({ title, price, contact, content, image })
@@ -182,38 +186,43 @@ const PostEditForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className={`text-center ${styles.ImageField}`}>
-              <figure>
-                <Image className={appStyles.Image} src={image} rounded />
-              </figure>
-              <div>
-                <Form.Label
-                  className={`${btnStyles.Button} btn`}
-                  htmlFor="image-upload"
-                >
-                  Change the image
-                </Form.Label>
-              </div>
-              <Form.Control
-                type="file"
-                id="image-upload"
-                accept="image/*"
-                ref={imageInput}
-                onChange={handleImageChange}
-              />
-            </Form.Group>
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-      </Row>
+      {/* If hasloaded is true when data is fetched then load the forms. If not the display a spinner */}
+      {hasLoaded ? (
+        <Row>
+          <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+            <Container
+              className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            >
+              <Form.Group className={`text-center ${styles.ImageField}`}>
+                <figure>
+                  <Image className={appStyles.Image} src={image} rounded />
+                </figure>
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} btn`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+                <Form.Control
+                  type="file"
+                  id="image-upload"
+                  accept="image/*"
+                  ref={imageInput}
+                  onChange={handleImageChange}
+                />
+              </Form.Group>
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+          <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+            <Container className={appStyles.Content}>{textFields}</Container>
+          </Col>
+        </Row>
+      ) : (
+        <Asset spinner />
+      )}
     </Form>
   );
 };
