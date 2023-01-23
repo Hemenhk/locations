@@ -1,4 +1,6 @@
 .Button {
+  font-family: 'Koulen', cursive;
+  letter-spacing: 1px;
   font-size: 0.8rem;
   align-self: center;
   border-radius: 100px !important;

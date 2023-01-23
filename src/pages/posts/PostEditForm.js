@@ -176,7 +176,7 @@ const PostEditForm = () => {
       </Form.Group>
       {/* The navigate(-1) is the same as useHistory's go.Back function */}
       <Button className={btnStyles.Button} type="submit">
-        Save
+        save
       </Button>
       <Button className={btnStyles.Button} onClick={() => navigate(-1)}>
         cancel
@@ -186,7 +186,7 @@ const PostEditForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {/* If hasloaded is true when data is fetched then load the forms. If not the display a spinner */}
+      {/* If hasLoaded is true when data is fetched then load the forms. If not the display a spinner */}
       {hasLoaded ? (
         <Row>
           <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
